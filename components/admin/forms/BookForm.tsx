@@ -14,15 +14,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/FileUpload";
 import ColorPicker from "@/components/admin/ColorPicker";
-// import { createBook } from "@/lib/admin/actions/book";
-// import { toast } from "@/hooks/use-toast";
+import { createBook, updateBook } from "@/lib/admin/actions/book";
 import { toast } from "@/hooks/use-toast";
+
 interface Props {
   type: "create" | "update";
   book?: Book
@@ -30,7 +30,7 @@ interface Props {
 
 const BookForm = ({ type, book }: Props) => {
   const isCreate = type === "create";
-  // const router = useRouter();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof bookSchema>>({
     resolver: zodResolver(bookSchema),
@@ -40,71 +40,71 @@ const BookForm = ({ type, book }: Props) => {
       author: isCreate ? '' : book?.author,
       genre: isCreate ? '' : book?.genre,
       rating: isCreate ? 1 : book?.rating,
-      totalCopies: isCreate ? 1 : book?.total_copies,
-      coverUrl: isCreate ? '' : book?.cover,
-      coverColor: isCreate ? '' : book?.color,
-      videoUrl: isCreate ? '' : book?.video,
+      totalCopies: isCreate ? 1 : book?.totalCopies,
+      coverUrl: isCreate ? '' : book?.coverUrl,
+      coverColor: isCreate ? '' : book?.coverColor,
+      videoUrl: isCreate ? '' : book?.videoUrl,
       summary: isCreate ? '' : book?.summary,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof bookSchema>) => {
-    toast({
-      title: "Info",
-      description: `
-       Submitted : ${JSON.stringify(values, null, 2)} `,
-    });
-    // if (isCreate) {
-    //   const result = await createBook(data);
+  const onSubmit = async (data: z.infer<typeof bookSchema>) => {
+    // toast({
+    //   title: "Info",
+    //   description: `
+    //    Submitted : ${JSON.stringify(data, null, 2)} `,
+    // });
+    if (isCreate) {
+      const result = await createBook(data);
 
-    //   if (result.success) {
-    //     toast({
-    //       title: "Success",
-    //       description: "Book created successfully",
-    //     });
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: "Book created successfully",
+        });
 
-    //     router.push(`/admin/books/${result.data.id}`);
-    //   } else {
-    //     toast({
-    //       title: "Error",
-    //       description: result.message,
-    //       variant: "destructive",
-    //     });
-    //   }
-    // } else {
-    //   if (book) {
-    //     const values = ({
-    //       id: book.id,
-    //       title: data.title,
-    //       description: data.description,
-    //       author: data.author,
-    //       genre: data.genre,
-    //       rating: data.rating,
-    //       totalCopies: data.totalCopies,
-    //       coverUrl: data.coverUrl,
-    //       coverColor: data.coverColor,
-    //       videoUrl: data.videoUrl,
-    //       summary: data.summary,
-    //     })
-    //     const result = await updateBook(values);
+        router.push(`/admin/books/${result.data.id}`);
+      } else {
+        toast({
+          title: "Error",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } else {
+      if (book) {
+        const values = ({
+          id: book.id,
+          title: data.title,
+          description: data.description,
+          author: data.author,
+          genre: data.genre,
+          rating: data.rating,
+          totalCopies: data.totalCopies,
+          coverUrl: data.coverUrl,
+          coverColor: data.coverColor,
+          videoUrl: data.videoUrl,
+          summary: data.summary,
+        })
+        const result = await updateBook(values);
 
-    //     if (result.success) {
-    //       toast({
-    //         title: "Success",
-    //         description: "Book updated successfully",
-    //       });
+        if (result.success) {
+          toast({
+            title: "Success",
+            description: "Book updated successfully",
+          });
 
-    //       router.push(`/admin/books/${result.data.id}`);
-    //     } else {
-    //       toast({
-    //         title: "Error",
-    //         description: result.message,
-    //         variant: "destructive",
-    //       });
-    //     }
-    //   }
+          router.push(`/admin/books/${result.data.id}`);
+        } else {
+          toast({
+            title: "Error",
+            description: result.message,
+            variant: "destructive",
+          });
+        }
+      }
 
-    // }
+    }
   };
 
   return (

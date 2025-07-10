@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable drizzle/enforce-delete-with-where */
+/* eslint-disable @typescript-eslint/prefer-for-of */
 import datausers from './sample-data';
-// import dummyUsers from "../dummyusers.json";
+import dummyBooks from "../dummybooks.json";
 import ImageKit from "imagekit";
-// import { users } from "@/database/schema";
+import { books } from "@/database/schema";
 import { users } from "@/database/schema";
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
@@ -39,31 +42,31 @@ const uploadToImageKit = async (
     }
 };
 
-function getFilenameFromUrl(url: string): string {
-    const lastSlashIndex = url.lastIndexOf('/');
-    let filename = url.substring(lastSlashIndex + 1);
+// function getFilenameFromUrl(url: string): string {
+//     const lastSlashIndex = url.lastIndexOf('/');
+//     let filename = url.substring(lastSlashIndex + 1);
 
-    const queryParamIndex = filename.indexOf('?');
-    if (queryParamIndex !== -1) {
-        filename = filename.substring(0, queryParamIndex);
-    }
+//     const queryParamIndex = filename.indexOf('?');
+//     if (queryParamIndex !== -1) {
+//         filename = filename.substring(0, queryParamIndex);
+//     }
 
-    return filename;
-}
+//     return filename;
+// }
 
 
 
 
 const seed = async () => {
     console.log("Seeding data...");
-    await db
-        .delete(users)
+    await db.delete(users)
+    await db.delete(books)
     try {
         for (let i = 0; i < datausers.length; i++) {
             const hashedPassword = await hashPassword(datausers[i].password, 10);
             const newuniversityCard = (await uploadToImageKit(
                 datausers[i].universityCard,
-                getFilenameFromUrl(datausers[i].universityCard),
+                `${datausers[i].email}.jpg`,
                 "ids",
             ))!;
             await db.insert(users).values({
@@ -73,26 +76,26 @@ const seed = async () => {
             });
             console.log(`Added user: ${datausers[i].email}`);
         }
-        // for (const user of dummyUsers) {
-        //     const coverUrl = (await uploadToImageKit(
-        //         user.coverUrl,
-        //         getFilenameFromUrl(user.coverUrl),
-        //         "/users/covers",
-        //     )) as string;
+        for (const book of dummyBooks) {
+            const coverUrl = (await uploadToImageKit(
+                book.coverUrl,
+                `${book.title}.jpg`,
+                "/books/covers",
+            ))!;
 
-        //     const videoUrl = (await uploadToImageKit(
-        //         user.videoUrl,
-        //         getFilenameFromUrl(user.videoUrl),
-        //         "/users/videos",
-        //     )) as string;
+            const videoUrl = (await uploadToImageKit(
+                book.videoUrl,
+                `${book.title}.mp4`,
+                "/books/videos",
+            ))!;
 
-        //     await db.insert(users).values({
-        //         ...user,
-        //         coverUrl,
-        //         videoUrl,
-        //     });
-        //     console.log(`Added user: ${user.title}`);
-        // }
+            await db.insert(books).values({
+                ...book,
+                coverUrl,
+                videoUrl,
+            });
+            console.log(`Added book: ${book.title}`);
+        }
 
         console.log("Data seeded successfully!");
     } catch (error) {

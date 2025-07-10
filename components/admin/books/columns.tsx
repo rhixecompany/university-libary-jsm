@@ -20,13 +20,14 @@ import {
     Trash2
 } from "lucide-react"
 import Link from "next/link"
-// import { toast } from "@/hooks/use-toast"
-// import { deleteBook } from '@/lib/admin/actions/book'
+import { toast } from "@/hooks/use-toast"
+import { deleteBook } from '@/lib/admin/actions/book'
 import {
     type ColumnDef,
 
 } from "@tanstack/react-table"
-import Image from "next/image";
+import { IKImage } from "imagekitio-next";
+import config from "@/lib/config";
 import {
     IconDotsVertical
 } from "@tabler/icons-react"
@@ -70,12 +71,12 @@ export const columns: ColumnDef<Book>[] = [
         cell: ({ row }) => <div className="lowercase">{row.getValue("title")}</div>,
     },
     {
-        accessorKey: "cover",
-        header: "Cover",
-        cell: ({ row }) => <Image className="size-10 rounded-sm"
-            alt={row.original.cover}
-            src={row.original.cover}
-
+        accessorKey: "coverUrl",
+        header: "CoverUrl",
+        cell: ({ row }) => <IKImage className="size-10 rounded-sm"
+            alt={row.original.coverUrl}
+            path={row.original.coverUrl}
+            urlEndpoint={config.env.imagekit.urlEndpoint}
             width={500}
             height={300}
 
@@ -92,14 +93,14 @@ export const columns: ColumnDef<Book>[] = [
         cell: ({ row }) => <div className="lowercase">{row.getValue("genre")}</div>,
     },
     {
-        accessorKey: "total_copies",
+        accessorKey: "totalCopies",
         header: "TotalCopies",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("total_copies")}</div>,
+        cell: ({ row }) => <div className="lowercase">{row.getValue("totalCopies")}</div>,
     },
     {
-        accessorKey: "available_copies",
+        accessorKey: "availableCopies",
         header: "AvailableCopies",
-        cell: ({ row }) => <div className="lowercase">{row.getValue("available_copies")}</div>,
+        cell: ({ row }) => <div className="lowercase">{row.getValue("availableCopies")}</div>,
     },
 
 
@@ -112,21 +113,21 @@ export const columns: ColumnDef<Book>[] = [
             const id = row.original.id
 
             const handleDelete = async () => {
-                // const result = await deleteBook(id)
-                // if (result.success) {
-                //     toast({
-                //         title: "Success",
-                //         description: "Book created deletedfully",
-                //     });
+                const result = await deleteBook(id)
+                if (result.success) {
+                    toast({
+                        title: "Success",
+                        description: "Book created deletedfully",
+                    });
 
 
-                // } else {
-                //     toast({
-                //         title: "Error",
-                //         description: result.message,
-                //         variant: "destructive",
-                //     });
-                // }
+                } else {
+                    toast({
+                        title: "Error",
+                        description: result.message,
+                        variant: "destructive",
+                    });
+                }
             }
             return (<DropdownMenu>
                 <DropdownMenuTrigger asChild>
