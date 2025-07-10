@@ -21,3 +21,16 @@ interface AuthCredentials {
   universityId: number;
   universityCard: string;
 }
+
+
+interface UserParams {
+  id: string;
+  email: string;
+  fullName: string;
+  lastActivityDate?: Date | null;
+  password: string;
+  universityId: number;
+  universityCard: string;
+  role: "ADMIN" | "USER";
+  status: "PENDING" | "APPROVED" | "REJECTED";
+}

@@ -3,7 +3,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
-import { hash } from "bcryptjs";
+import { hashPassword } from "@/lib/encrypt";
 import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/ratelimit";
@@ -57,7 +57,7 @@ export const signUp = async (params: AuthCredentials) => {
     return { success: false, error: "User already exists" };
   }
 
-  const hashedPassword = await hash(password, 10);
+  const hashedPassword = await hashPassword(password, 10);
 
   try {
     await db.insert(users).values({

@@ -1,24 +1,19 @@
-import { auth } from "@/auth";
+
 import Header from "@/components/Header";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
+
 import { after } from "next/server";
 import { type ReactNode } from "react";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
   if (!session) redirect("/sign-in");
-  const id = session?.user?.id
 
-  const isAdmin = await db
-    .select({ isAdmin: users.role })
-    .from(users)
-    .where(eq(users.id, id!))
-    .limit(1)
-    .then((res) => res[0]?.isAdmin === "ADMIN");
 
   after(async () => {
     if (!session?.user?.id) return;
@@ -38,10 +33,11 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       .where(eq(users.id, session?.user?.id));
   });
 
+
   return (
     <main className="root-container">
       <div className="mx-auto max-w-7xl">
-        <Header session={session} isAdmin={isAdmin} />
+        <Header session={session} />
 
         <div className="mt-20 pb-20">{children}</div>
       </div>

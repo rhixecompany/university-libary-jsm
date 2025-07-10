@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react'
 
 import {
@@ -33,9 +34,9 @@ import { Bot } from "lucide-react"
 interface Props {
     name: string | null | undefined,
     email: string | null | undefined,
-    isAdmin: boolean | null | undefined,
+    role: string | null | undefined,
 }
-const UserMenu = ({ name, email, isAdmin }: Props) => {
+const UserMenu = ({ name, email, role }: Props) => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -82,7 +83,7 @@ const UserMenu = ({ name, email, isAdmin }: Props) => {
                     </DropdownMenuItem>
 
                 </DropdownMenuGroup>
-                {isAdmin && (
+                {role === "ADMIN" && (
                     <React.Fragment>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>

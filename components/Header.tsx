@@ -13,11 +13,10 @@ import UserMenu from '@/components/UserMenu';
 
 interface Props {
   session: Session | null,
-  isAdmin: boolean | null | undefined,
 }
 
 
-const Header = ({ session, isAdmin }: Props) => {
+const Header = ({ session }: Props) => {
   // const handleSignOut = async () => {
   //   await signOutUser();
   // };
@@ -38,7 +37,7 @@ const Header = ({ session, isAdmin }: Props) => {
           }>Library</Link>
         </li>
         <li>
-          <UserMenu email={session?.user?.email} name={session?.user?.name} isAdmin={isAdmin} />
+          <UserMenu email={session?.user?.email} name={session?.user?.name} role={session?.user?.role} />
         </li>
 
 
