@@ -18,7 +18,7 @@ const config = {
     gmail: {
       gmailUsername: process.env.GMAIL_USERNAME!,
       gmailPassword: process.env.GMAIL_PASSWORD!,
-    }
+    },
   },
 };
 

@@ -1,6 +1,10 @@
+CREATE TYPE "public"."borrow_status" AS ENUM('BORROWED', 'RETURNED');--> statement-breakpoint
+CREATE TYPE "public"."role" AS ENUM('USER', 'ADMIN');--> statement-breakpoint
+CREATE TYPE "public"."status" AS ENUM('PENDING', 'APPROVED', 'REJECTED');--> statement-breakpoint
 CREATE TABLE "books" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" varchar(255) NOT NULL,
+	"slug" varchar(255),
 	"author" varchar(255) NOT NULL,
 	"genre" text NOT NULL,
 	"rating" integer NOT NULL,
@@ -12,7 +16,10 @@ CREATE TABLE "books" (
 	"video_url" text NOT NULL,
 	"summary" varchar NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now(),
-	CONSTRAINT "books_id_unique" UNIQUE("id")
+	"updated_at" timestamp NOT NULL,
+	CONSTRAINT "books_id_unique" UNIQUE("id"),
+	CONSTRAINT "books_title_unique" UNIQUE("title"),
+	CONSTRAINT "books_slug_unique" UNIQUE("slug")
 );
 --> statement-breakpoint
 CREATE TABLE "borrow_records" (
@@ -25,6 +32,21 @@ CREATE TABLE "borrow_records" (
 	"status" "borrow_status" DEFAULT 'BORROWED' NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now(),
 	CONSTRAINT "borrow_records_id_unique" UNIQUE("id")
+);
+--> statement-breakpoint
+CREATE TABLE "users" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"name" varchar(255) DEFAULT 'NO_NAME' NOT NULL,
+	"email" text NOT NULL,
+	"password" text NOT NULL,
+	"avatar" text NOT NULL,
+	"status" "status" DEFAULT 'PENDING',
+	"role" "role" DEFAULT 'USER',
+	"last_activity_date" date DEFAULT now(),
+	"created_at" timestamp with time zone DEFAULT now(),
+	"updated_at" timestamp NOT NULL,
+	CONSTRAINT "users_id_unique" UNIQUE("id"),
+	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 ALTER TABLE "borrow_records" ADD CONSTRAINT "borrow_records_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint

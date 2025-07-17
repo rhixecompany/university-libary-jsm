@@ -1,20 +1,30 @@
-"use client";
+import React from 'react'
+import { Metadata } from 'next';
+import MyHandler from './myhandler';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-import React from "react";
-import AuthForm from "@/components/AuthForm";
-import { signInSchema } from "@/lib/validations";
-import { signInWithCredentials } from "@/lib/actions/auth";
+export const metadata: Metadata = {
+  title: 'Sign In',
+};
 
-const Page = () => (
-  <AuthForm
-    type="SIGN_IN"
-    schema={signInSchema}
-    defaultValues={{
-      email: "",
-      password: "",
-    }}
-    onSubmit={signInWithCredentials}
-  />
-);
+const Page = async (props: {
+  searchParams: Promise<{
+    callbackUrl: string;
+  }>;
+}) => {
+  const { callbackUrl } = await props.searchParams;
 
-export default Page;
+  const session = await auth();
+
+  if (session) {
+    return redirect(callbackUrl || '/my-profile');
+  }
+  return (
+    <MyHandler />
+  )
+}
+
+
+
+export default Page

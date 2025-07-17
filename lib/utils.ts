@@ -1,6 +1,6 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-import ms from 'ms'
+import { clsx, type ClassValue } from 'clsx';
+import ms from 'ms';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -8,9 +8,9 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getInitials = (name: string): string =>
   name
-    .split(" ")
+    .split(' ')
     .map((part) => part[0])
-    .join("")
+    .join('')
     .toUpperCase()
     .slice(0, 2);
 
@@ -35,18 +35,9 @@ export const formatDateTime = (dateString: Date) => {
     minute: 'numeric', // numeric minute (e.g., '30')
     hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
   };
-  const formattedDateTime: string = new Date(dateString).toLocaleString(
-    'en-US',
-    dateTimeOptions
-  );
-  const formattedDate: string = new Date(dateString).toLocaleString(
-    'en-US',
-    dateOptions
-  );
-  const formattedTime: string = new Date(dateString).toLocaleString(
-    'en-US',
-    timeOptions
-  );
+  const formattedDateTime: string = new Date(dateString).toLocaleString('en-US', dateTimeOptions);
+  const formattedDate: string = new Date(dateString).toLocaleString('en-US', dateOptions);
+  const formattedTime: string = new Date(dateString).toLocaleString('en-US', timeOptions);
   return {
     dateTime: formattedDateTime,
     dateOnly: formattedDate,
@@ -54,9 +45,7 @@ export const formatDateTime = (dateString: Date) => {
   };
 };
 
-
 export const timeAgo = (timestamp: Date, timeOnly?: boolean): string => {
-  if (!timestamp) return 'never'
-  return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? '' : ' ago'
-    }`
-}
+  if (!timestamp) return 'never';
+  return `${ms(Date.now() - new Date(timestamp).getTime())}${timeOnly ? '' : ' ago'}`;
+};

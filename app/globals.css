@@ -1,3 +1,8 @@
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,9 +13,7 @@
   }
 
   .hide-scrollbar::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    border-radius: 0px;
+    @apply w-0 h-0 rounded-none;
   }
 
   .hide-scrollbar::-webkit-scrollbar-track {
@@ -18,8 +21,8 @@
   }
 
   .hide-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-none;
     background: transparent;
-    border-radius: 0px;
   }
 
   .hide-scrollbar::-webkit-scrollbar-thumb:hover {
@@ -29,11 +32,11 @@
 
 @layer components {
   .form-btn {
-    @apply bg-primary text-dark-100 hover:bg-primary inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base !important;
+    @apply inline-flex min-h-14 w-full items-center justify-center rounded-md bg-primary px-6 py-2 text-base font-bold text-dark-100 hover:bg-primary !important;
   }
 
   .form-input {
-    @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none bg-dark-300 !important;
+    @apply min-h-14 w-full border-none bg-dark-300 text-base font-bold text-white placeholder:font-normal placeholder:text-light-100 focus-visible:shadow-none focus-visible:ring-0 !important;
   }
 
   /* Book Card */
@@ -50,37 +53,37 @@
   }
 
   .book-btn {
-    @apply bg-dark-600 mt-3 min-h-14 w-full font-bebas-neue text-base text-primary;
+    @apply mt-3 min-h-14 w-full bg-dark-600 font-bebas-neue text-base text-primary;
   }
 
   /* Borrowed Book */
   .borrowed-book {
-    @apply gradient-vertical p-5 rounded-2xl xs:w-min w-full relative;
+    @apply gradient-vertical relative w-full rounded-2xl p-5 xs:w-min;
   }
 
   .borrowed-book_cover {
-    @apply py-4 lg:px-16 px-10 flex justify-center items-center w-full rounded-lg;
+    @apply flex w-full items-center justify-center rounded-lg px-10 py-4 lg:px-16;
   }
 
   /* Book Cover */
   .book-cover_extra_small {
-    @apply w-[28.95px] h-10;
+    @apply h-10 w-[28.95px];
   }
 
   .book-cover_small {
-    @apply w-[55px] h-[76px];
+    @apply h-[76px] w-[55px];
   }
 
   .book-cover_medium {
-    @apply w-[144px] h-[199px];
+    @apply h-[199px] w-[144px];
   }
 
   .book-cover_regular {
-    @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px];
+    @apply h-[169px] w-[114px] xs:h-[239px] xs:w-[174px];
   }
 
   .book-cover_wide {
-    @apply xs:w-[296px] w-[256px] xs:h-[404px] h-[354px];
+    @apply h-[354px] w-[256px] xs:h-[404px] xs:w-[296px];
   }
 
   /* Book List */
@@ -102,7 +105,7 @@
   }
 
   .book-copies {
-    @apply flex flex-row flex-wrap gap-4 mt-1;
+    @apply mt-1 flex flex-row flex-wrap gap-4;
   }
 
   .book-copies p {
@@ -140,12 +143,12 @@
   }
 
   .search-input {
-    @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none !important;
+    @apply w-full border-none font-bold text-white placeholder:font-normal placeholder:text-light-100 focus-visible:shadow-none focus-visible:ring-0 !important;
   }
 
   /* Book Receipt */
   .book-receipt_admin-btn {
-    @apply bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 !important;
+    @apply rounded-md bg-light-300 font-semibold text-primary-admin hover:bg-light-300/80 !important;
   }
 
   /* Book Ticket */
@@ -179,19 +182,19 @@
 
   /* Not Found */
   #not-found {
-    @apply flex justify-center items-center flex-col text-center w-full;
+    @apply flex w-full flex-col items-center justify-center text-center;
   }
 
   #not-found h4 {
-    @apply text-white mt-6 font-semibold text-2xl;
+    @apply mt-6 text-2xl font-semibold text-white;
   }
 
   #not-found p {
-    @apply text-light-100 w-[360px] mt-1;
+    @apply mt-1 w-[360px] text-light-100;
   }
 
   .not-found-btn {
-    @apply bg-primary font-bebas-neue min-w-[360px] mt-6 text-dark-100 text-xl hover:bg-primary/90 min-h-12 !important;
+    @apply mt-6 min-h-12 min-w-[360px] bg-primary font-bebas-neue text-xl text-dark-100 hover:bg-primary/90 !important;
   }
 
   /* Pagination */
@@ -208,16 +211,16 @@
   }
 
   #pagination p {
-    @apply text-sm inline-flex items-center font-semibold px-4 py-1.5 rounded-md text-center;
+    @apply inline-flex items-center rounded-md px-4 py-1.5 text-center text-sm font-semibold;
   }
 
   /* Sort */
   .select-trigger {
-    @apply w-40 h-10 px-4 bg-dark-300 text-light-100 border-dark-100 !important;
+    @apply h-10 w-40 border-dark-100 bg-dark-300 px-4 text-light-100 !important;
   }
 
   .select-content {
-    @apply bg-dark-300 text-light-100 border-dark-100 !important;
+    @apply border-dark-100 bg-dark-300 text-light-100 !important;
   }
 
   .select-item {
@@ -244,7 +247,7 @@
   }
 
   .auth-form {
-    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top bg-dark-100 px-5 py-10;
+    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-dark-100 bg-pattern bg-cover bg-top px-5 py-10;
   }
 
   .auth-box {
@@ -257,17 +260,16 @@
 
   /* Root */
   .root-container {
-    @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+    @apply flex min-h-screen flex-1 flex-col bg-dark-100 bg-pattern bg-cover bg-top px-5 xs:px-10 md:px-16;
   }
 
   /* .root-container {
     @apply container flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
   } */
 
-
   /* Book Details */
   .book-details {
-    @apply lg:mt-36 mt-16 mb-20 flex flex-col gap-16 lg:flex-row;
+    @apply mb-20 mt-16 flex flex-col gap-16 lg:mt-36 lg:flex-row;
   }
 
   .book-details h3 {
@@ -276,7 +278,7 @@
 
   /* Library */
   .library {
-    @apply mx-auto flex max-w-xl w-full flex-col text-center;
+    @apply mx-auto flex w-full max-w-xl flex-col text-center;
   }
 
   .library-subtitle {
@@ -345,7 +347,7 @@
   }
 }
 
-/* 
+
 @layer base {
   * {
     @apply border-border;
@@ -354,4 +356,205 @@
   body {
     @apply bg-background text-foreground;
   }
-} */
+}
+
+@layer components {
+  .admin-container {
+    @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10;
+  }
+
+  .back-btn {
+    @apply mb-10 w-fit border border-light-300 bg-white text-xs font-medium text-dark-200 hover:bg-light-300 !important;
+  }
+
+  /* Confirmation Dialog */
+  .confirm-trigger {
+    @apply w-full text-sm font-semibold shadow-none hover:bg-opacity-70 !important;
+  }
+
+  .confirm-approve {
+    @apply bg-green-100 text-green-800 hover:bg-green-100/70 !important;
+  }
+
+  .confirm-reject {
+    @apply bg-red-100 text-red-800 hover:bg-red-100/70 !important;
+  }
+
+  .confirm-content {
+    @apply flex flex-col items-center justify-center p-6 sm:max-w-md !important;
+  }
+
+  .confirm-illustration {
+    @apply mx-auto flex size-28 items-center justify-center rounded-full;
+  }
+
+  .confirm-illustration div:first-child {
+    @apply flex size-[70%] items-center justify-center rounded-full;
+  }
+
+  .confirm-btn {
+    @apply min-h-14 w-full rounded-xl text-base font-bold text-light-800 !important;
+  }
+
+  /* Book Form */
+  .book-form_input {
+    @apply min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500 !important;
+  }
+
+  .book-form_btn {
+    @apply min-h-14 w-full bg-primary-admin hover:bg-primary-admin/95 !important;
+  }
+
+  /* Home Page */
+  .view-btn {
+    @apply rounded-md bg-light-300 font-semibold text-primary-admin shadow-none hover:bg-light-300/80 !important;
+  }
+
+  .add-new-book_btn {
+    @apply mb-3 mt-7 flex flex-row items-center gap-4 rounded-xl bg-light-300 px-3 py-4;
+  }
+
+  .add-new-book_btn div:first-child {
+    @apply flex size-12 items-center justify-center rounded-full bg-white;
+  }
+
+  .add-new-book_btn p:first-child {
+    @apply text-lg font-semibold text-dark-400;
+  }
+
+  /* Statistics */
+  .stat {
+    @apply flex-1 space-y-5 rounded-xl bg-white p-5;
+  }
+
+  .stat-info {
+    @apply flex items-center justify-between gap-5;
+  }
+
+  .stat-label {
+    @apply whitespace-nowrap text-base font-medium text-light-500;
+  }
+
+  .stat-count {
+    @apply text-3xl font-semibold text-dark-400;
+  }
+
+  /* Book Stripe */
+  .book-stripe {
+    @apply flex flex-row gap-4 rounded-lg bg-light-300 p-4;
+  }
+
+  .book-stripe .title {
+    @apply line-clamp-1 text-base font-semibold text-dark-400;
+  }
+
+  .book-stripe .author {
+    @apply flex flex-row flex-wrap items-center gap-2;
+  }
+
+  .book-stripe .author p:first-child {
+    @apply line-clamp-1 text-sm text-light-500;
+  }
+
+  .book-stripe .author div {
+    @apply size-1 rounded-full bg-light-500;
+  }
+
+  .book-stripe .author p:last-child {
+    @apply text-sm text-light-500;
+  }
+
+  .book-stripe .user {
+    @apply mt-2.5 flex flex-row flex-wrap gap-5;
+  }
+
+  .book-stripe .user .avatar {
+    @apply flex flex-row items-center gap-1.5;
+  }
+
+  .book-stripe .user .avatar p {
+    @apply text-xs text-dark-200;
+  }
+
+  .book-stripe .borrow-date {
+    @apply flex flex-row items-center gap-1.5;
+  }
+
+  .book-stripe .borrow-date p {
+    @apply text-xs text-dark-200;
+  }
+
+  /* Color Picker */
+  .color-picker {
+    @apply flex min-h-14 flex-row items-center gap-3 rounded-md border border-gray-100 bg-light-600 p-4 text-base font-semibold text-dark-400;
+  }
+
+  .hex-input {
+    @apply h-full flex-1 bg-transparent font-ibm-plex-sans outline-none;
+  }
+
+  .hex-color-picker {
+    @apply absolute left-0 top-full z-50 mt-3;
+  }
+
+  /* Error Fallback */
+  .error-fallback {
+    @apply rounded-md bg-red-100 p-4 text-red-700;
+  }
+
+  .error-fallback h2 {
+    @apply mb-2 text-lg font-semibold;
+  }
+
+  /* Header */
+  .admin-header {
+    @apply mb-5 flex flex-col items-start justify-between gap-5 sm:mb-10 lg:flex-row lg:items-end;
+  }
+
+  /* Search */
+  .admin-search {
+    @apply flex min-h-14 w-full items-center gap-1 rounded-md border border-gray-100 bg-light-600 px-4 lg:max-w-md;
+  }
+
+  .admin-search_input {
+    @apply w-full border-0 bg-transparent shadow-none outline-none focus:border-0 focus:outline-none focus:ring-0 !important;
+  }
+
+  /* Sidebar */
+  .admin-sidebar {
+    @apply sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10;
+  }
+
+  .admin-sidebar .logo {
+    @apply flex flex-row items-center gap-2 border-b border-dashed border-primary-admin/20 pb-10 max-md:justify-center;
+  }
+
+  .admin-sidebar .logo h1 {
+    @apply text-2xl font-semibold text-primary-admin max-md:hidden;
+  }
+
+  .admin-sidebar .link {
+    @apply flex w-full flex-row items-center gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+  }
+
+  .admin-sidebar .link p {
+    @apply text-base font-medium max-md:hidden;
+  }
+
+  .admin-sidebar .user {
+    @apply my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2;
+  }
+
+  /* User Card */
+  .user-card {
+    @apply flex w-40 flex-col items-center justify-center rounded-xl bg-light-300 px-3 py-4 text-center;
+  }
+
+  .user-card .name {
+    @apply mt-3 line-clamp-1 w-full break-words font-medium text-dark-400;
+  }
+
+  .user-card .email {
+    @apply line-clamp-1 w-full break-words text-sm text-light-500;
+  }
+}

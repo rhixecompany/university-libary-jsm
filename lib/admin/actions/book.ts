@@ -1,12 +1,9 @@
-"use server";
+'use server';
 
-import { db } from "@/database/drizzle";
-import { books } from "@/database/schema";
-import { eq } from "drizzle-orm";
+import { db } from '@/database/drizzle';
+import { books } from '@/database/schema';
+import { eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
-
-
-
 
 export const createBook = async (params: BookParams) => {
   try {
@@ -27,14 +24,14 @@ export const createBook = async (params: BookParams) => {
 
     return {
       success: false,
-      message: "An error occurred while creating the book",
+      message: 'An error occurred while creating the book',
     };
   }
 };
 
 export const updateBook = async (params: Pick<Book, 'id' | 'title' | 'description' | 'author' | 'genre' | 'rating' | 'totalCopies' | 'coverUrl' | 'videoUrl' | 'summary'>) => {
   try {
-    const id = params.id
+    const id = params.id;
     const updatedBook = await db
       .update(books)
       .set({
@@ -54,17 +51,14 @@ export const updateBook = async (params: Pick<Book, 'id' | 'title' | 'descriptio
 
     return {
       success: false,
-      message: "An error occurred while updating the book",
+      message: 'An error occurred while updating the book',
     };
   }
 };
 
 export const deleteBook = async (id: string) => {
   try {
-    const deletedBook = await db
-      .delete(books)
-      .where(eq(books.id, id))
-      .returning();
+    const deletedBook = await db.delete(books).where(eq(books.id, id)).returning();
     // revalidatePath(`/admin/books/${deletedBook[0].id}`);
     revalidatePath('/admin/books');
     return {
@@ -75,7 +69,7 @@ export const deleteBook = async (id: string) => {
     console.log(error);
     return {
       success: false,
-      message: "An error occurred while deleting the book",
+      message: 'An error occurred while deleting the book',
     };
   }
 };

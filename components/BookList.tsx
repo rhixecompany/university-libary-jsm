@@ -1,5 +1,4 @@
-import React from "react";
-import BookCard from "@/components/BookCard";
+import BookCard from '@/components/BookCard';
 
 interface Props {
   title: string;
@@ -16,7 +15,7 @@ const BookList = ({ title, books, containerClassName }: Props) => {
 
       <ul className="book-list">
         {books.map((book) => (
-          <BookCard key={book.title} {...book} />
+          <BookCard key={book.id} {...book} />
         ))}
       </ul>
     </section>

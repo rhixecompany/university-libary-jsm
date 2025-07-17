@@ -1,6 +1,6 @@
-import { Client as WorkflowClient } from "@upstash/workflow";
+import { Client as WorkflowClient } from '@upstash/workflow';
 
-import config from "@/lib/config";
+import config from '@/lib/config';
 import nodemailer from 'nodemailer';
 export const workflowClient = new WorkflowClient({
   baseUrl: config.env.upstash.qstashUrl,
@@ -16,15 +16,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendEmail = async ({
-  email,
-  subject,
-  message,
-}: {
-  email: string;
-  subject: string;
-  message: string;
-}) => {
+export const sendEmail = async ({ email, subject, message }: { email: string; subject: string; message: string }) => {
   const mailOptions = {
     from: process.env.GMAIL_USERNAME,
     to: [email],
@@ -43,5 +35,4 @@ export const sendEmail = async ({
     `,
   };
   await transporter.sendMail(mailOptions);
-
 };

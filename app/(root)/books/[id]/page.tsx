@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
-import { auth } from "@/auth";
-import BookOverview from "@/components/BookOverview";
-import BookVideo from "@/components/BookVideo";
-import { notFound } from "next/navigation";
+import { auth } from '@/auth';
+import BookOverview from '@/components/BookOverview';
+import BookVideo from '@/components/BookVideo';
+import { notFound } from 'next/navigation';
 
-import { getAllBooks, getBookById } from "@/lib/actions/book";
+import { getAllBooks, getBookById } from '@/lib/actions/book';
 import { type Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,30 +13,27 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
-
 // Return a list of `params` to populate the [id] dynamic segment
 export async function generateStaticParams() {
-  const books = await getAllBooks()
+  const books = await getAllBooks();
 
   return books.map((book) => ({
     id: book.id.toString(),
   }));
 }
 
-
-
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
   const session = await auth();
 
   // Fetch data based on id
-  const [bookDetails] = await getBookById(id)
+  const [bookDetails] = await getBookById(id);
 
-  if (!bookDetails) notFound()
+  if (!bookDetails) notFound();
 
   return (
     <>
-      <BookOverview  {...bookDetails} userId={session?.user?.id!} />
+      <BookOverview {...bookDetails} userId={session?.user?.id!} />
 
       <div className="book-details">
         <div className="flex-[1.5]">
@@ -49,7 +46,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <h3>Summary</h3>
 
             <div className="space-y-5 text-xl text-light-100">
-              {bookDetails.summary.split("\n").map((line, i) => (
+              {bookDetails.summary.split('\n').map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
             </div>

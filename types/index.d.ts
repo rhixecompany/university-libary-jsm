@@ -16,11 +16,10 @@ interface Book {
 }
 
 interface AuthCredentials {
-  fullName: string;
+  name: string;
   email: string;
   password: string;
-  universityId: number;
-  universityCard: string;
+  avatar: string;
 }
 
 interface BookParams {
@@ -43,12 +42,13 @@ interface BorrowBookParams {
 
 interface UserParams {
   id: string;
+  name: string;
   email: string;
-  fullName: string;
-  lastActivityDate?: Date | null;
   password: string;
-  universityId: number;
-  universityCard: string;
-  role: "ADMIN" | "USER";
-  status: "PENDING" | "APPROVED" | "REJECTED";
+  avatar: string;
+  role: "USER" | "ADMIN" | null;
+  status: "PENDING" | "APPROVED" | "REJECTED" | null;
+  lastActivityDate: string | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }

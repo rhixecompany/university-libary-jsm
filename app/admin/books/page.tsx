@@ -1,9 +1,8 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { DataTable } from "@/components/admin/books/data-table";
-import { columns } from "@/components/admin/books/columns";
-import { getAllBooks } from "@/lib/actions/book";
+import { columns } from '@/components/admin/books/columns';
+import { DataTable } from '@/components/admin/books/data-table';
+import { Button } from '@/components/ui/button';
+import { getAllBooks } from '@/lib/actions/book';
+import Link from 'next/link';
 
 const Page = async () => {
   const latestBooks = await getAllBooks();

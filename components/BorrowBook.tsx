@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { toast } from "@/hooks/use-toast";
-import { borrowBook } from "@/lib/actions/book";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
+import { borrowBook } from '@/lib/actions/book';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface Props {
   userId: string;
@@ -17,20 +17,16 @@ interface Props {
   };
 }
 
-const BorrowBook = ({
-  userId,
-  bookId,
-  borrowingEligibility: { isEligible, message },
-}: Props) => {
+const BorrowBook = ({ userId, bookId, borrowingEligibility: { isEligible, message } }: Props) => {
   const router = useRouter();
   const [borrowing, setBorrowing] = useState(false);
 
   const handleBorrowBook = async () => {
     if (!isEligible) {
       toast({
-        title: "Error",
+        title: 'Error',
         description: message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     }
 
@@ -41,24 +37,24 @@ const BorrowBook = ({
 
       if (result.success) {
         toast({
-          title: "Success",
-          description: "Book borrowed successfully",
+          title: 'Success',
+          description: 'Book borrowed successfully',
         });
 
-        router.push("/");
+        router.push('/');
       } else {
         toast({
-          title: "Error",
+          title: 'Error',
           description: result.error,
-          variant: "destructive",
+          variant: 'destructive',
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
-        title: "Error",
-        description: "An error occurred while borrowing the book",
-        variant: "destructive",
+        title: 'Error',
+        description: 'An error occurred while borrowing the book',
+        variant: 'destructive',
       });
     } finally {
       setBorrowing(false);
@@ -66,15 +62,9 @@ const BorrowBook = ({
   };
 
   return (
-    <Button
-      className="book-overview_btn"
-      onClick={handleBorrowBook}
-      disabled={borrowing}
-    >
+    <Button className="book-overview_btn" onClick={handleBorrowBook} disabled={borrowing}>
       <Image src="/icons/book.svg" alt="book" width={20} height={20} />
-      <p className="font-bebas-neue text-xl text-dark-100">
-        {borrowing ? "Borrowing ..." : "Borrow Book"}
-      </p>
+      <p className="font-bebas-neue text-xl text-dark-100">{borrowing ? 'Borrowing ...' : 'Borrow Book'}</p>
     </Button>
   );
 };

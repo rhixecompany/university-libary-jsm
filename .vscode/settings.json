@@ -10,8 +10,18 @@
     "editor.glyphMargin": false,
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "none",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
     "workbench.startupEditor": "none",
     "notebook.output.scrolling": true,
+    "files.associations": {
+        "**/.css": "tailwindcss",
+        // "**/.scss": "tailwindcss"
+    },
     "files.exclude": {
         "**/.csv": true,
         "**/.parquet": true,
@@ -22,11 +32,11 @@
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "React Dev Theme (dark)",
     "breadcrumbs.enabled": false,
     "explorer.decorations.badges": false,
     "explorer.decorations.colors": false,
-    "files.autoSave": "afterDelay",
+    // "files.autoSave": "afterDelay",
     "git.enableSmartCommit": true,
     "window.commandCenter": true,
     "markdown.validate.enabled": true,
@@ -44,7 +54,7 @@
         "editor.formatOnSave": true
     },
     "[javascript]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
     "[typescript]": {
@@ -73,7 +83,7 @@
         "editor.defaultFormatter": "Prisma.prisma"
     },
     "[yaml]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -83,5 +93,25 @@
     },
     "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "neon",
+            "group": "neon",
+            "database": "npg_yeYK3aZx8LWw@ep-misty-truth-a85d73oi-pooler.eastus2.azure.neon.tech",
+            "username": "neondb_owner",
+            "connectString": "postgresql://neondb_owner:npg_yeYK3aZx8LWw@ep-misty-truth-a85d73oi-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
+        }
+    ],
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
     }
 }

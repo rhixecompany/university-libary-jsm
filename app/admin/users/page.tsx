@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { columns } from "@/components/admin/users/columns";
-import { DataTable } from "@/components/admin/users/data-table";
-import { getAllUsers } from "@/lib/actions/user";
+import { columns } from '@/components/admin/users/columns';
+import { DataTable } from '@/components/admin/users/data-table';
+import { Button } from '@/components/ui/button';
+import { getAllUsers } from '@/lib/actions/user';
+import Link from 'next/link';
 
 const Page = async () => {
   const latestUsers = await getAllUsers();
@@ -18,9 +18,7 @@ const Page = async () => {
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
-
         <DataTable data={latestUsers} columns={columns} />
-
       </div>
     </section>
   );

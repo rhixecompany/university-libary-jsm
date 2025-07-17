@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  type DefaultValues,
-  type FieldValues,
-  type Path,
-  type SubmitHandler,
+  DefaultValues,
+  FieldValues,
+  Path,
+  SubmitHandler,
   useForm,
-  type UseFormReturn,
+  UseFormReturn,
 } from "react-hook-form";
-import { type ZodType } from "zod";
+import { ZodType } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,11 +22,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
+import { USER_FIELD_NAMES, USER_FIELD_TYPES } from "@/constants";
 import FileUpload from "@/components/FileUpload";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-
+import { useSearchParams } from 'next/navigation';
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
@@ -41,6 +40,8 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: Props<T>) => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/my-profile';
   const router = useRouter();
 
   const isSignIn = type === "SIGN_IN";
@@ -61,7 +62,7 @@ const AuthForm = <T extends FieldValues>({
           : "You have successfully signed up.",
       });
 
-      router.push("/");
+      router.push(callbackUrl);
     } else {
       toast({
         title: `Error ${isSignIn ? "signing in" : "signing up"}`,
@@ -83,9 +84,13 @@ const AuthForm = <T extends FieldValues>({
       </p>
       <Form {...form}>
         <form
+
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={form.handleSubmit(handleSubmit)}
+
           className="w-full space-y-6"
         >
+          <Input type="hidden" name="callbackUrl" value={callbackUrl} className="form-input" />
           {Object.keys(defaultValues).map((field) => (
             <FormField
               key={field}
@@ -94,15 +99,15 @@ const AuthForm = <T extends FieldValues>({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="capitalize">
-                    {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
+                    {USER_FIELD_NAMES[field.name as keyof typeof USER_FIELD_NAMES]}
                   </FormLabel>
                   <FormControl>
-                    {field.name === "universityCard" ? (
+                    {field.name === "avatar" ? (
                       <FileUpload
                         type="image"
                         accept="image/*"
-                        placeholder="Upload your ID"
-                        folder="ids"
+                        placeholder="Upload your Avatar"
+                        folder="users"
                         variant="dark"
                         onFileChange={field.onChange}
                       />
@@ -110,7 +115,7 @@ const AuthForm = <T extends FieldValues>({
                       <Input
                         required
                         type={
-                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
+                          USER_FIELD_TYPES[field.name as keyof typeof USER_FIELD_TYPES]
                         }
                         {...field}
                         className="form-input"
