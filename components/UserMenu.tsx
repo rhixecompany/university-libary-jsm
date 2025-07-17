@@ -15,6 +15,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { signOutUser } from '@/lib/actions/auth';
+import config from '@/lib/config';
 import { getInitials } from '@/lib/utils';
 import {
   // IconCreditCard,
@@ -23,8 +25,6 @@ import {
   IconUserCircle,
 } from '@tabler/icons-react';
 import { Bot } from 'lucide-react';
-import { signOutUser } from '@/lib/actions/auth';
-import config from '@/lib/config';
 import Link from 'next/link';
 interface Props {
   name: string | null | undefined;
@@ -46,12 +46,7 @@ const UserMenu = ({ name, email, role, avatar }: Props) => {
           </Avatar>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent // eslint-disable-next-line tailwindcss/no-custom-classname
-        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-        side={'bottom'}
-        align="end"
-        sideOffset={4}
-      >
+      <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg" side={'bottom'} align="end" sideOffset={4}>
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="size-8 rounded-lg">

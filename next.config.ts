@@ -24,10 +24,10 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-  sassOptions: {
-    additionalData: `$var: red;`,
-    implementation: 'sass-embedded',
-  },
+  // sassOptions: {
+  //   additionalData: `$var: red;`,
+  //   implementation: 'sass-embedded',
+  // },
 };
 
 export default nextConfig;

@@ -8,9 +8,9 @@ import { hash } from '@/lib/encrypt';
 import ratelimit from '@/lib/ratelimit';
 import { workflowClient } from '@/lib/workflow';
 import { eq } from 'drizzle-orm';
+import { isRedirectError } from 'next/dist/client/components/redirect-error';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { isRedirectError } from 'next/dist/client/components/redirect-error';
 export const signInWithCredentials = async (params: Pick<AuthCredentials, 'email' | 'password'>) => {
   const { email, password } = params;
 
@@ -20,14 +20,15 @@ export const signInWithCredentials = async (params: Pick<AuthCredentials, 'email
   if (!success) return redirect('/too-fast');
 
   try {
-    await signIn('credentials', {
+    const result = await signIn('credentials', {
       email,
       password,
+      redirect: false,
     });
 
-    // if (result?.error) {
-    //   return { success: false, error: result.error };
-    // }
+    if (result?.error) {
+      return { success: false, error: result.error };
+    }
 
     return { success: true };
   } catch (error) {

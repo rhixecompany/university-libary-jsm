@@ -1,8 +1,7 @@
-import React from 'react'
-import { Metadata } from 'next';
-import MyHandler from './myhandler';
 import { auth } from '@/auth';
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import MyHandler from './myhandler';
 
 export const metadata: Metadata = {
   title: 'Sign In',
@@ -20,11 +19,7 @@ const Page = async (props: {
   if (session) {
     return redirect(callbackUrl || '/my-profile');
   }
-  return (
-    <MyHandler />
-  )
-}
+  return <MyHandler />;
+};
 
-
-
-export default Page
+export default Page;

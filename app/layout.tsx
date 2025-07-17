@@ -1,4 +1,4 @@
-import '@/styles/globals.scss';
+import '@/styles/globals.css';
 
 // import { auth } from '@/auth';
 // import { ThemeProvider } from "next-themes"
@@ -33,8 +33,6 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
-
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}>

@@ -8,13 +8,13 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import config from '@/lib/config';
 import { formatDateTime, timeAgo } from '@/lib/utils';
+import { userSchema } from '@/lib/validations';
 import { IconCircleCheckFilled, IconDotsVertical, IconLoader } from '@tabler/icons-react';
 import { type ColumnDef } from '@tanstack/react-table';
 import { IKImage } from 'imagekitio-next';
 import { Edit, Heart, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import z from 'zod';
-import { userSchema } from '@/lib/validations';
 // import { toast } from "@/hooks/use-toast"
 // import { deleteBook } from '@/lib/admin/actions/book'
 
@@ -49,14 +49,7 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     accessorKey: 'avatar',
     header: 'Avatar',
     cell: ({ row }) => (
-      <IKImage
-        className="size-10 rounded-sm"
-        alt={row.original.avatar}
-        path={row.original.avatar}
-        urlEndpoint={config.env.imagekit.urlEndpoint}
-        width={500}
-        height={300}
-      />
+      <IKImage className="size-10 rounded-sm" alt={row.original.avatar} path={row.original.avatar} urlEndpoint={config.env.imagekit.urlEndpoint} width={500} height={300} />
     ),
   },
   {
@@ -70,8 +63,8 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     header: () => <div className="text-right">LastActivityDate</div>,
     cell: ({ row }) => {
       const lastActivityDate = row.original.lastActivityDate;
-
-      return <div className="text-right font-thin">{lastActivityDate!}</div>;
+      const formatted = formatDateTime(lastActivityDate!);
+      return <div className="text-right font-thin">{formatted.dateTime}</div>;
     },
   },
   {

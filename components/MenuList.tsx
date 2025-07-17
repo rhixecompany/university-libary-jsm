@@ -8,14 +8,11 @@ import { type Session } from 'next-auth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-
 interface Props {
   session: Session | null;
 }
 
-
 const MenuList = ({ session }: Props) => {
-
   const pathname = usePathname();
 
   return (
@@ -36,7 +33,6 @@ const MenuList = ({ session }: Props) => {
           </Link>
         </li>
       )}
-
     </ul>
   );
 };

@@ -24,22 +24,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (credentials == null) {
           return null;
         }
-
-        const user = await db
-          .select()
-          .from(users)
-          .where(eq(users.email, credentials.email as string))
-          .limit(1);
-
+        const email = credentials.email as string;
+        const user = await db.select().from(users).where(eq(users.email, email.toLowerCase())).limit(1);
 
         if (user.length === 0) return null;
 
         // Check if user exists and if the password matches
         if (user[0] && user[0].password) {
-          const isMatch = await compare(
-            credentials.password as string,
-            user[0].password
-          );
+          const isMatch = await compare(credentials.password as string, user[0].password);
           // If password is correct, return user
           if (isMatch) {
             return {
@@ -50,7 +42,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               avatar: user[0].avatar,
             } as User;
           }
-
         }
 
         // If user does not exist or password does not match return null
@@ -88,11 +79,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.name = user.email!.split('@')[0];
 
           // Update database to reflect the token name
-          await db
-            .update(users)
-            .set({ name: token.name })
-            .where(eq(users.id, user.id!));
-
+          await db.update(users).set({ name: token.name }).where(eq(users.id, user.id!));
         }
 
         if (trigger === 'signIn' || trigger === 'signUp') {
@@ -106,11 +93,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // Handle session updates
       if (session?.user.name && trigger === 'update') {
         token.name = session.user.name;
-        token.avatar = session.user.avatar
+        token.avatar = session.user.avatar;
       }
 
       return token;
     },
-
   },
 });

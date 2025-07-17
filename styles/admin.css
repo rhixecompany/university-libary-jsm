@@ -1,209 +1,330 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './theme.css';
+
+@custom-variant dark (&:is(.dark *));
+
+
 /*
-  Based on TailwindCSS recommendations,
-  consider using classes instead of the `@apply` directive
-  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
 */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* @layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+} */
 
-@layer components {
-  .admin-container {
-    @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10;
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
 
-  .back-btn {
-    @apply mb-10 w-fit border border-light-300 bg-white text-xs font-medium text-dark-200 hover:bg-light-300 !important;
+  body {
+    @apply bg-background text-foreground;
   }
+}
 
+/* @config '../tailwind.config.ts'; */
+
+@utility admin-container {
+  @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10;
+}
+
+@utility back-btn {
+  @apply mb-10! w-fit! border! border-light-300! bg-white! text-xs! font-medium! text-dark-200! hover:bg-light-300!;
+}
+
+@utility confirm-trigger {
   /* Confirmation Dialog */
-  .confirm-trigger {
-    @apply w-full text-sm font-semibold shadow-none hover:bg-opacity-70 !important;
-  }
+  @apply font-semibold! text-sm! shadow-none! hover:opacity-70! w-full!;
+}
 
-  .confirm-approve {
-    @apply bg-green-100 text-green-800 hover:bg-green-100/70 !important;
-  }
+@utility confirm-approve {
+  @apply bg-green-100! text-green-800! hover:bg-green-100/70!;
+}
 
-  .confirm-reject {
-    @apply bg-red-100 text-red-800 hover:bg-red-100/70 !important;
-  }
+@utility confirm-reject {
+  @apply bg-red-100! text-red-800! hover:bg-red-100/70!;
+}
 
-  .confirm-content {
-    @apply flex flex-col items-center justify-center p-6 sm:max-w-md !important;
-  }
+@utility confirm-content {
+  @apply sm:max-w-md! flex! flex-col! items-center! justify-center! p-6!;
+}
 
-  .confirm-illustration {
-    @apply mx-auto flex size-28 items-center justify-center rounded-full;
-  }
+@utility confirm-illustration {
+  @apply size-28 rounded-full flex justify-center items-center mx-auto;
 
-  .confirm-illustration div:first-child {
-    @apply flex size-[70%] items-center justify-center rounded-full;
+  & div:first-child {
+    @apply size-[70%] rounded-full flex justify-center items-center;
   }
+}
 
-  .confirm-btn {
-    @apply min-h-14 w-full rounded-xl text-base font-bold text-light-800 !important;
-  }
+@utility confirm-btn {
+  @apply w-full! min-h-14! rounded-xl! font-bold! text-base! text-light-800!;
+}
 
+@utility book-form_input {
   /* Book Form */
-  .book-form_input {
-    @apply min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500 !important;
-  }
+  @apply min-h-14! border! border-gray-100! bg-light-600! p-4! text-base! font-semibold! placeholder:font-normal! placeholder:text-slate-500!;
+}
 
-  .book-form_btn {
-    @apply min-h-14 w-full bg-primary-admin hover:bg-primary-admin/95 !important;
-  }
+@utility book-form_btn {
+  @apply min-h-14! w-full! bg-primary-admin! hover:bg-primary-admin/95!;
+}
 
+@utility view-btn {
   /* Home Page */
-  .view-btn {
-    @apply rounded-md bg-light-300 font-semibold text-primary-admin shadow-none hover:bg-light-300/80 !important;
+  @apply bg-light-300! rounded-md! text-primary-admin! font-semibold! hover:bg-light-300/80! shadow-none!;
+}
+
+@utility add-new-book_btn {
+  @apply mt-7 mb-3 bg-light-300 py-4 px-3 flex flex-row items-center rounded-xl gap-4;
+
+  & div:first-child {
+    @apply size-12 bg-white rounded-full flex justify-center items-center;
   }
 
-  .add-new-book_btn {
-    @apply mb-3 mt-7 flex flex-row items-center gap-4 rounded-xl bg-light-300 px-3 py-4;
+  & p:first-child {
+    @apply font-semibold text-lg text-dark-400;
   }
+}
 
-  .add-new-book_btn div:first-child {
-    @apply flex size-12 items-center justify-center rounded-full bg-white;
-  }
-
-  .add-new-book_btn p:first-child {
-    @apply text-lg font-semibold text-dark-400;
-  }
-
+@utility stat {
   /* Statistics */
-  .stat {
-    @apply flex-1 space-y-5 rounded-xl bg-white p-5;
-  }
+  @apply bg-white rounded-xl p-5 space-y-5 flex-1;
+}
 
-  .stat-info {
-    @apply flex items-center justify-between gap-5;
-  }
+@utility stat-info {
+  @apply flex justify-between items-center gap-5;
+}
 
-  .stat-label {
-    @apply whitespace-nowrap text-base font-medium text-light-500;
-  }
+@utility stat-label {
+  @apply font-medium text-base text-light-500 whitespace-nowrap;
+}
 
-  .stat-count {
-    @apply text-3xl font-semibold text-dark-400;
-  }
+@utility stat-count {
+  @apply font-semibold text-3xl text-dark-400;
+}
 
+@utility book-stripe {
   /* Book Stripe */
-  .book-stripe {
-    @apply flex flex-row gap-4 rounded-lg bg-light-300 p-4;
+  @apply flex flex-row gap-4 bg-light-300 p-4 rounded-lg;
+
+  & .title {
+    @apply font-semibold text-base text-dark-400 line-clamp-1;
   }
 
-  .book-stripe .title {
-    @apply line-clamp-1 text-base font-semibold text-dark-400;
+  & .author {
+    @apply flex flex-wrap flex-row items-center gap-2;
   }
 
-  .book-stripe .author {
-    @apply flex flex-row flex-wrap items-center gap-2;
+  & .author p:first-child {
+    @apply text-light-500 text-sm line-clamp-1;
   }
 
-  .book-stripe .author p:first-child {
-    @apply line-clamp-1 text-sm text-light-500;
-  }
-
-  .book-stripe .author div {
+  & .author div {
     @apply size-1 rounded-full bg-light-500;
   }
 
-  .book-stripe .author p:last-child {
-    @apply text-sm text-light-500;
+  & .author p:last-child {
+    @apply text-light-500 text-sm;
   }
 
-  .book-stripe .user {
+  & .user {
     @apply mt-2.5 flex flex-row flex-wrap gap-5;
   }
 
-  .book-stripe .user .avatar {
+  & .user .avatar {
     @apply flex flex-row items-center gap-1.5;
   }
 
-  .book-stripe .user .avatar p {
+  & .user .avatar p {
     @apply text-xs text-dark-200;
   }
 
-  .book-stripe .borrow-date {
+  & .borrow-date {
     @apply flex flex-row items-center gap-1.5;
   }
 
-  .book-stripe .borrow-date p {
+  & .borrow-date p {
+    @apply text-xs text-dark-200;
+  }
+}
+
+@utility title {
+  .book-stripe & {
+    @apply font-semibold text-base text-dark-400 line-clamp-1;
+  }
+}
+
+@utility author {
+  .book-stripe & {
+    @apply flex flex-wrap flex-row items-center gap-2;
+  }
+
+  .book-stripe & p:first-child {
+    @apply text-light-500 text-sm line-clamp-1;
+  }
+
+  .book-stripe & div {
+    @apply size-1 rounded-full bg-light-500;
+  }
+
+  .book-stripe & p:last-child {
+    @apply text-light-500 text-sm;
+  }
+}
+
+@utility user {
+  .book-stripe & {
+    @apply mt-2.5 flex flex-row flex-wrap gap-5;
+  }
+
+  .book-stripe & .avatar {
+    @apply flex flex-row items-center gap-1.5;
+  }
+
+  .book-stripe & .avatar p {
     @apply text-xs text-dark-200;
   }
 
+  .admin-sidebar & {
+    @apply my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-xs max-md:px-2;
+  }
+}
+
+@utility avatar {
+  .book-stripe .user & {
+    @apply flex flex-row items-center gap-1.5;
+  }
+
+  .book-stripe .user & p {
+    @apply text-xs text-dark-200;
+  }
+}
+
+@utility borrow-date {
+  .book-stripe & {
+    @apply flex flex-row items-center gap-1.5;
+  }
+
+  .book-stripe & p {
+    @apply text-xs text-dark-200;
+  }
+}
+
+@utility color-picker {
   /* Color Picker */
-  .color-picker {
-    @apply flex min-h-14 flex-row items-center gap-3 rounded-md border border-gray-100 bg-light-600 p-4 text-base font-semibold text-dark-400;
-  }
+  @apply flex min-h-14 flex-row items-center gap-3 rounded-md border border-gray-100 bg-light-600 p-4 text-base font-semibold text-dark-400;
+}
 
-  .hex-input {
-    @apply h-full flex-1 bg-transparent font-ibm-plex-sans outline-none;
-  }
+@utility hex-input {
+  @apply h-full flex-1 bg-transparent font-ibm-plex-sans outline-hidden;
+}
 
-  .hex-color-picker {
-    @apply absolute left-0 top-full z-50 mt-3;
-  }
+@utility hex-color-picker {
+  @apply absolute left-0 top-full z-50 mt-3;
+}
 
+@utility error-fallback {
   /* Error Fallback */
-  .error-fallback {
-    @apply rounded-md bg-red-100 p-4 text-red-700;
-  }
+  @apply p-4 bg-red-100 text-red-700 rounded-md;
 
-  .error-fallback h2 {
-    @apply mb-2 text-lg font-semibold;
+  & h2 {
+    @apply text-lg font-semibold mb-2;
   }
+}
 
+@utility admin-header {
   /* Header */
-  .admin-header {
-    @apply mb-5 flex flex-col items-start justify-between gap-5 sm:mb-10 lg:flex-row lg:items-end;
-  }
+  @apply flex lg:items-end items-start justify-between lg:flex-row flex-col gap-5 sm:mb-10 mb-5;
+}
 
+@utility admin-search {
   /* Search */
-  .admin-search {
-    @apply flex min-h-14 w-full items-center gap-1 rounded-md border border-gray-100 bg-light-600 px-4 lg:max-w-md;
-  }
+  @apply flex border border-gray-100 min-h-14 items-center gap-1 rounded-md bg-light-600 px-4 lg:max-w-md w-full;
+}
 
-  .admin-search_input {
-    @apply w-full border-0 bg-transparent shadow-none outline-none focus:border-0 focus:outline-none focus:ring-0 !important;
-  }
+@utility admin-search_input {
+  @apply w-full! border-0! shadow-none! bg-transparent! outline-hidden! focus:outline-hidden! focus:ring-0! focus:border-0!;
+}
 
+@utility admin-sidebar {
   /* Sidebar */
-  .admin-sidebar {
-    @apply sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10;
-  }
+  @apply sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10;
 
-  .admin-sidebar .logo {
+  & .logo {
     @apply flex flex-row items-center gap-2 border-b border-dashed border-primary-admin/20 pb-10 max-md:justify-center;
   }
 
-  .admin-sidebar .logo h1 {
+  & .logo h1 {
     @apply text-2xl font-semibold text-primary-admin max-md:hidden;
   }
 
-  .admin-sidebar .link {
-    @apply flex w-full flex-row items-center gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+  & .link {
+    @apply flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
   }
 
-  .admin-sidebar .link p {
+  & .link p {
     @apply text-base font-medium max-md:hidden;
   }
 
-  .admin-sidebar .user {
-    @apply my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2;
+  & .user {
+    @apply my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-xs max-md:px-2;
+  }
+}
+
+@utility logo {
+  .admin-sidebar & {
+    @apply flex flex-row items-center gap-2 border-b border-dashed border-primary-admin/20 pb-10 max-md:justify-center;
   }
 
+  .admin-sidebar & h1 {
+    @apply text-2xl font-semibold text-primary-admin max-md:hidden;
+  }
+}
+
+@utility link {
+  .admin-sidebar & {
+    @apply flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+  }
+
+  .admin-sidebar & p {
+    @apply text-base font-medium max-md:hidden;
+  }
+}
+
+@utility user-card {
   /* User Card */
-  .user-card {
-    @apply flex w-40 flex-col items-center justify-center rounded-xl bg-light-300 px-3 py-4 text-center;
+  @apply w-40 bg-light-300 py-4 px-3 flex justify-center items-center flex-col rounded-xl text-center;
+
+  & .name {
+    @apply font-medium mt-3 text-dark-400 line-clamp-1 w-full break-words;
   }
 
-  .user-card .name {
-    @apply mt-3 line-clamp-1 w-full break-words font-medium text-dark-400;
+  & .email {
+    @apply text-light-500 text-sm line-clamp-1 break-words w-full;
   }
+}
 
-  .user-card .email {
-    @apply line-clamp-1 w-full break-words text-sm text-light-500;
+@utility name {
+  .user-card & {
+    @apply font-medium mt-3 text-dark-400 line-clamp-1 w-full break-words;
+  }
+}
+
+@utility email {
+  .user-card & {
+    @apply text-light-500 text-sm line-clamp-1 break-words w-full;
   }
 }

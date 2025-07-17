@@ -1,14 +1,14 @@
-import { books, borrowRecords, users } from '@/database/schema';
-import ImageKit from 'imagekit';
-import dummyBooks from './dummybooks';
-import datausers from './sample-users';
 import type { InsertBook } from '@/database/schema';
+import { books, borrowRecords, users } from '@/database/schema';
 import { hash } from '@/lib/encrypt';
 import { neon } from '@neondatabase/serverless';
 import { config } from 'dotenv';
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/neon-http';
+import ImageKit from 'imagekit';
 import slugify from 'slugify';
+import dummyBooks from './dummybooks';
+import datausers from './sample-users';
 config({ path: '.env.local' });
 
 const sql = neon(process.env.DATABASE_URL!);
@@ -27,7 +27,7 @@ const uploadToImageKit = async (url: string, fileName: string, folder: string, o
       fileName,
       folder,
       overwriteFile,
-      useUniqueFileName
+      useUniqueFileName,
     });
 
     return response.filePath;
@@ -55,7 +55,6 @@ const seed = async () => {
   await db.delete(users);
   try {
     for (const user of datausers) {
-
       const password = await hash(user.password);
       const avatar = (await uploadToImageKit(user.avatar, getFilenameFromUrl(user.avatar), '/users', true, false)) as string;
       await db.insert(users).values({
@@ -84,19 +83,17 @@ const seed = async () => {
         ...book,
         coverUrl: coverUrl,
         videoUrl: videoUrl,
-        slug: cleanedSlug
-      }
+        slug: cleanedSlug,
+      };
       if (item) {
         await db.insert(books).values(item);
         console.log(`Added title: ${item.title} , slug: ${item.slug}, coverUrl: ${item.coverUrl}, videoUrl: ${item.videoUrl}`);
       } else {
         console.error('Error creating book:', book);
       }
-
     }
     const allbooks = await db.select().from(books);
     console.log('Getting all books from the database: ', allbooks);
-
   } catch (error) {
     console.error('Error creating books:', error);
   }

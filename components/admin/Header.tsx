@@ -1,10 +1,8 @@
 import { type Session } from 'next-auth';
 
-
 interface Props {
   session: Session | null;
 }
-
 
 const Header = ({ session }: Props) => {
   return (

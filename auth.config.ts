@@ -5,15 +5,7 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request }) {
       // Array of regex patterns of paths we want to protect
-      const protectedPaths = [
-        /\/shipping-address/,
-        /\/payment-method/,
-        /\/place-order/,
-        /\/my-profile/,
-        /\/user\/(.*)/,
-        /\/order\/(.*)/,
-        /\/admin/,
-      ];
+      const protectedPaths = [/\/shipping-address/, /\/payment-method/, /\/place-order/, /\/my-profile/, /\/user\/(.*)/, /\/order\/(.*)/, /\/admin/];
 
       // Get pathname from the req URL object
       const { pathname } = request.nextUrl;

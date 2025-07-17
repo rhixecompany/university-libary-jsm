@@ -32,7 +32,7 @@
     "search.exclude": {
         "out": true // set this to false to include "out" folder in search results
     },
-    "workbench.colorTheme": "React Dev Theme (dark)",
+    // "workbench.colorTheme": "React Dev Theme (dark)",
     "breadcrumbs.enabled": false,
     "explorer.decorations.badges": false,
     "explorer.decorations.colors": false,
@@ -77,7 +77,8 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[css]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
+        "editor.defaultFormatter": "vscode.css-language-features",
+        "editor.formatOnSave": false,
     },
     "[prisma]": {
         "editor.defaultFormatter": "Prisma.prisma"
@@ -89,7 +90,8 @@
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "[tailwindcss]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false,
     },
     "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"

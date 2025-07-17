@@ -46,8 +46,8 @@ interface UserParams {
   email: string;
   password: string;
   avatar: string;
-  role: "USER" | "ADMIN" | null;
-  status: "PENDING" | "APPROVED" | "REJECTED" | null;
+  role: 'USER' | 'ADMIN' | null;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED' | null;
   lastActivityDate: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;

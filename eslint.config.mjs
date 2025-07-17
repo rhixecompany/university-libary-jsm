@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript', 'prettier', 'plugin:tailwindcss/recommended', 'plugin:@typescript-eslint/recommended'],
+    extends: ['next/core-web-vitals', 'next/typescript', 'prettier', 'plugin:@typescript-eslint/recommended'],
     plugins: ['@typescript-eslint', 'drizzle', 'zod'],
 
     rules: {

@@ -1,5 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -25,8 +23,8 @@ import { type Session } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { usePathname } from 'next/navigation';
 import config from '@/lib/config';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   session: Session | null;
@@ -130,7 +128,11 @@ const Sidebar = ({ session }: Props) => {
           )}
 
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => { handleSignOut(); }}>
+          <DropdownMenuItem
+            onClick={() => {
+              handleSignOut();
+            }}
+          >
             <IconLogout />
             Log out
           </DropdownMenuItem>

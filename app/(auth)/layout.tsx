@@ -1,12 +1,9 @@
-
 import Image from 'next/image';
 
-import { type ReactNode } from 'react';
 import logo from '@/assets/logo.svg';
+import { type ReactNode } from 'react';
 
 const Layout = ({ children }: { children: ReactNode }) => {
-
-
   return (
     <main className="auth-container">
       <section className="auth-form">
