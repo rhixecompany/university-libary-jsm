@@ -86,7 +86,7 @@ export const userSchema = z
     avatar: z.string(),
     role: z.union([z.literal('USER'), z.literal('ADMIN')]).nullable(),
     status: z.union([z.literal('PENDING'), z.literal('APPROVED'), z.literal('REJECTED')]).nullable(),
-    lastActivityDate: z.date().nullable(),
+    lastActivityDate: z.string().nullable(),
     createdAt: z.date().nullable(),
     updatedAt: z.date().nullable(),
   })

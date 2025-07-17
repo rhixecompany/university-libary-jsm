@@ -11,7 +11,7 @@ const Page = async () => {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">All Users</h2>
         <Button className="bg-primary-admin" asChild>
-          <Link href="#" className="text-white">
+          <Link href="/admin/users/new" className="text-white">
             + Create a New User
           </Link>
         </Button>

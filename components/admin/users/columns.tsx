@@ -63,8 +63,8 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     header: () => <div className="text-right">LastActivityDate</div>,
     cell: ({ row }) => {
       const lastActivityDate = row.original.lastActivityDate;
-      const formatted = formatDateTime(lastActivityDate!);
-      return <div className="text-right font-thin">{formatted.dateTime}</div>;
+      // const formatted = formatDateTime(lastActivityDate!);
+      return <div className="text-right font-thin">{lastActivityDate!}</div>;
     },
   },
   {
@@ -98,9 +98,9 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
   {
     id: 'actions',
     enableHiding: false,
-    cell: () => {
-      // cell: ({ row }) => {
-      // const id = row.original.id
+    // cell: () => {
+    cell: ({ row }) => {
+      const id = row.original.id
 
       const handleDelete = async () => {
         // const result = await deleteBook(id)
@@ -126,7 +126,7 @@ export const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-32">
-            <Link href="#">
+            <Link href={`/admin/users/${id}`}>
               <DropdownMenuItem>
                 <Edit className="text-muted-foreground" />
                 <span>Edit</span>
