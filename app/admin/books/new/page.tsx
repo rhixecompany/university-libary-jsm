@@ -11,9 +11,8 @@ const Page = () => {
       </Button>
 
       <section className="w-full max-w-2xl">
-        <BookForm type='create' />
+        <BookForm type="create" />
       </section>
-
     </>
   )
 }

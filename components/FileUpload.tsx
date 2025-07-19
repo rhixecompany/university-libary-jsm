@@ -5,7 +5,7 @@ import config from '@/lib/config'
 // import ImageKit from "imagekit";
 import { useRef, useState } from 'react'
 import Image from 'next/image'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 
 const {
@@ -90,7 +90,6 @@ const FileUpload = ({
     //   description: `${res.filePath} uploaded successfully!`,
     // })
     toast.success(`${res.filePath} uploaded successfully!`)
-
   }
 
   const onValidate = (file: File) => {

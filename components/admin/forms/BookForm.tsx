@@ -27,7 +27,7 @@ interface Props extends Partial<Book> {
 }
 
 const BookForm = ({ type, ...book }: Props) => {
-  const isCreate = type === 'create';
+  const isCreate = type === 'create'
   const router = useRouter()
 
   const form = useForm<z.infer<typeof bookSchema>>({
@@ -49,7 +49,7 @@ const BookForm = ({ type, ...book }: Props) => {
   // const onSubmit = async (values: z.infer<typeof bookSchema>) => { }
   const onSubmit = async (values: z.infer<typeof bookSchema>) => {
     if (isCreate) {
-      const result = await createBook(values);
+      const result = await createBook(values)
 
       if (result.success) {
         // toast({
@@ -58,7 +58,7 @@ const BookForm = ({ type, ...book }: Props) => {
         // });
         toast.success(`Book created successfully`)
 
-        router.push(`/admin/books/${result.data.id}`);
+        router.push(`/admin/books/${result.data.id}`)
       } else {
         // toast({
         //   title: 'Error',
@@ -70,7 +70,6 @@ const BookForm = ({ type, ...book }: Props) => {
     } else {
       if (book) {
         const data = {
-
           title: values.title,
           description: values.description,
           author: values.author,
@@ -81,9 +80,9 @@ const BookForm = ({ type, ...book }: Props) => {
           coverColor: values.coverColor,
           videoUrl: values.videoUrl,
           summary: values.summary,
-        };
+        }
         const id = book.id!
-        const result = await updateBook(id, data);
+        const result = await updateBook(id, data)
 
         if (result.success) {
           // toast({
@@ -92,7 +91,7 @@ const BookForm = ({ type, ...book }: Props) => {
           // });
           toast.success(`Book updated successfully`)
 
-          router.push(`/admin/books/${result.data.id}`);
+          router.push(`/admin/books/${result.data.id}`)
         } else {
           // toast({
           //   title: 'Error',
@@ -103,7 +102,6 @@ const BookForm = ({ type, ...book }: Props) => {
         }
       }
     }
-
   }
 
   return (

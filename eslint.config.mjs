@@ -7,8 +7,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript', 'next', 'prettier', 'plugin:react/recommended',
-      'plugin:jsx-a11y/recommended'],
+    extends: [
+      'next/core-web-vitals',
+      'next/typescript',
+      'next',
+      'prettier',
+      'plugin:react/recommended',
+      'plugin:jsx-a11y/recommended',
+    ],
     rules: {
       'no-undef': 'off',
       // // 'tailwindcss/no-custom-classname': 'error',
@@ -26,7 +32,7 @@ const eslintConfig = [
       '@typescript-eslint/restrict-template-expressions': 'warn',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
-      'react/react-in-jsx-scope': 'off'
+      'react/react-in-jsx-scope': 'off',
     },
     plugins: ['@typescript-eslint', 'drizzle', 'zod', 'react', 'jsx-a11y'],
     parser: '@typescript-eslint/parser',
@@ -35,9 +41,9 @@ const eslintConfig = [
     },
     settings: {
       react: {
-        version: 'detect'
-      }
-    }
+        version: 'detect',
+      },
+    },
   }),
 ]
 

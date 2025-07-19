@@ -7,7 +7,7 @@ import { getAllbooks } from '@/lib/actions/book'
 const Home = async () => {
   const session = await auth()
 
-  const latestBooks = await getAllbooks();
+  const latestBooks = await getAllbooks()
 
   return (
     <>

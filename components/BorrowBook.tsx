@@ -56,7 +56,6 @@ const BorrowBook = ({
         toast.error(`${result.error}`)
       }
     } catch (error) {
-
       console.log(error)
       // toast({
       //   title: 'Error',

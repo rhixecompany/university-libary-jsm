@@ -9,9 +9,7 @@ const Page = () => {
         <Link href="/admin/book-requests">Go Back</Link>
       </Button>
 
-      <section className="w-full max-w-2xl">
-        Book-requestForm
-      </section>
+      <section className="w-full max-w-2xl">Book-requestForm</section>
     </>
   )
 }

@@ -1,14 +1,10 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import {
+import * as React from 'react'
+import { IconInnerShadowTop } from '@tabler/icons-react'
 
-  IconInnerShadowTop,
-
-} from "@tabler/icons-react"
-
-import { NavMain } from "@/components/admin/nav-main"
-import { NavUser } from "@/components/admin/nav-user"
+import { NavMain } from '@/components/admin/nav-main'
+import { NavUser } from '@/components/admin/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -17,20 +13,19 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import Link from "next/link"
+} from '@/components/ui/sidebar'
+import Link from 'next/link'
 import { adminSideBarLinks } from '@/constants'
 import { Session } from 'next-auth'
-
 
 export function AppSidebar({ session }: { session: Session }) {
   const MyUser = {
     name: session.user.name!,
     email: session.user.email!,
-    avatar: "/images/shadcn.jpg",
+    avatar: '/images/shadcn.jpg',
   }
   return (
-    <Sidebar collapsible="icon" variant="inset" >
+    <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

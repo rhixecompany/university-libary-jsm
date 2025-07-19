@@ -1,34 +1,34 @@
 import React from 'react'
-import { notFound } from 'next/navigation';
+import { notFound } from 'next/navigation'
 
 import BookOverview from '@/components/BookOverview'
 import BookVideo from '@/components/BookVideo'
-import { getAllbooks, getbookById } from '@/lib/actions/book';
-import { type Metadata } from 'next';
-import { auth } from '@/auth';
+import { getAllbooks, getbookById } from '@/lib/actions/book'
+import { type Metadata } from 'next'
+import { auth } from '@/auth'
 
 export const metadata: Metadata = {
   title: 'Book Detail',
-};
+}
 
-export const revalidate = 60;
+export const revalidate = 60
 
 // Return a list of `params` to populate the [id] dynamic segment
 export async function generateStaticParams() {
-  const books = await getAllbooks();
+  const books = await getAllbooks()
 
   return books.map((book: Book) => ({
     id: book.id.toString(),
-  }));
+  }))
 }
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
   const session = await auth()
   // Fetch data based on id
-  const [bookDetails] = await getbookById(id);
+  const [bookDetails] = await getbookById(id)
 
-  if (!bookDetails) notFound();
+  if (!bookDetails) notFound()
 
   return (
     <>

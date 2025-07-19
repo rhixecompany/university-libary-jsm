@@ -6,18 +6,13 @@ import Link from 'next/link'
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id
 
-
   return (
     <>
-
-
       <Button asChild className="back-btn">
         <Link href="/admin/account-requests">Go Back</Link>
       </Button>
 
-      <section className="w-full max-w-2xl">
-        {id}  account-requestForm
-      </section>
+      <section className="w-full max-w-2xl">{id} account-requestForm</section>
     </>
   )
 }

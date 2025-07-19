@@ -1,10 +1,7 @@
 import { ReactNode } from 'react'
-import { SiteHeader } from "@/components/admin/site-header"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/admin/app-sidebar"
+import { SiteHeader } from '@/components/admin/site-header'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/admin/app-sidebar'
 import '@/styles/admin.css'
 import { requireAdmin } from '@/lib/auth-guard'
 const Layout = async ({ children }: { children: ReactNode }) => {
@@ -14,8 +11,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
+          '--sidebar-width': 'calc(var(--spacing) * 72)',
+          '--header-height': 'calc(var(--spacing) * 12)',
         } as React.CSSProperties
       }
     >
@@ -27,10 +24,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             {children}
           </div>
         </div>
-
       </SidebarInset>
     </SidebarProvider>
-
   )
 }
 

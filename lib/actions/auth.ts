@@ -88,4 +88,3 @@ export const signUp = async (params: AuthCredentials) => {
 export const signOutUser = async () => {
   return await signOut()
 }
-

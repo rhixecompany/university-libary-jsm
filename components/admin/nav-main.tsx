@@ -1,17 +1,17 @@
-"use client"
+'use client'
 
-import { IconCirclePlusFilled, IconMail } from "@tabler/icons-react"
+import { IconCirclePlusFilled, IconMail } from '@tabler/icons-react'
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar'
 import Image from 'next/image'
-import Link from "next/link"
+import Link from 'next/link'
 export function NavMain({
   items,
 }: {
@@ -28,7 +28,7 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
               tooltip="Quick Create"
-              className="bg-slate-900 text-slate-50 hover:bg-slate-900/90 hover:text-slate-50 active:bg-slate-900/90 active:text-slate-50 min-w-8 duration-200 ease-linear dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 dark:hover:text-slate-900 dark:active:bg-slate-50/90 dark:active:text-slate-900"
+              className="min-w-8 bg-slate-900 text-slate-50 duration-200 ease-linear hover:bg-slate-900/90 hover:text-slate-50 active:bg-slate-900/90 active:text-slate-50 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 dark:hover:text-slate-900 dark:active:bg-slate-50/90 dark:active:text-slate-900"
             >
               <IconCirclePlusFilled />
               <span>Quick Create</span>
@@ -48,7 +48,14 @@ export function NavMain({
             <SidebarMenuItem key={item.text}>
               <SidebarMenuButton tooltip={item.text} asChild>
                 <Link href={item.route}>
-                  {item.img && <Image src={item.img} alt="My SVG Icon" width={18} height={18} />}
+                  {item.img && (
+                    <Image
+                      src={item.img}
+                      alt="My SVG Icon"
+                      width={18}
+                      height={18}
+                    />
+                  )}
                   {/* {item.img && <item.img />} */}
                   <span>{item.text}</span>
                 </Link>
