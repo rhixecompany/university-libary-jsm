@@ -1,12 +1,13 @@
-import { columns } from '@/components/admin/users/columns';
-import { DataTable } from '@/components/admin/users/data-table';
-import { Button } from '@/components/ui/button';
-import { getAllUsers } from '@/lib/actions/user';
-import Link from 'next/link';
+import React from 'react'
 
-const Page = async () => {
-  const latestUsers = await getAllUsers();
+
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+
+const Page = () => {
+
   return (
+
     <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">All Users</h2>
@@ -17,11 +18,13 @@ const Page = async () => {
         </Button>
       </div>
 
+
       <div className="mt-7 w-full overflow-hidden">
-        <DataTable data={latestUsers} columns={columns} />
+        <p>Table</p>
+
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

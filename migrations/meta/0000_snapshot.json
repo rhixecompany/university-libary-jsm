@@ -1,5 +1,5 @@
 {
-  "id": "e1681663-cd2c-43aa-98e8-9e267b72ff61",
+  "id": "ce22bd81-9222-44ed-aee7-f8031004adc5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -20,12 +20,6 @@
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
-        },
-        "slug": {
-          "name": "slug",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
         },
         "author": {
           "name": "author",
@@ -95,12 +89,6 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
         }
       },
       "indexes": {},
@@ -112,20 +100,6 @@
           "nullsNotDistinct": false,
           "columns": [
             "id"
-          ]
-        },
-        "books_title_unique": {
-          "name": "books_title_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "title"
-          ]
-        },
-        "books_slug_unique": {
-          "name": "books_slug_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "slug"
           ]
         }
       },
@@ -245,16 +219,21 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "name": {
-          "name": "name",
+        "full_name": {
+          "name": "full_name",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
-          "default": "'NO_NAME'"
+          "notNull": true
         },
         "email": {
           "name": "email",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "university_id": {
+          "name": "university_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -264,8 +243,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "avatar": {
-          "name": "avatar",
+        "university_card": {
+          "name": "university_card",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -299,12 +278,6 @@
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
         }
       },
       "indexes": {},
@@ -323,6 +296,13 @@
           "nullsNotDistinct": false,
           "columns": [
             "email"
+          ]
+        },
+        "users_university_id_unique": {
+          "name": "users_university_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "university_id"
           ]
         }
       },

@@ -1,90 +1,91 @@
-'use server';
+'use server'
 
-import { signIn, signOut } from '@/auth';
-import { db } from '@/database/drizzle';
-import { users } from '@/database/schema';
-import config from '@/lib/config';
-import { hash } from '@/lib/encrypt';
-import ratelimit from '@/lib/ratelimit';
-import { workflowClient } from '@/lib/workflow';
-import { eq } from 'drizzle-orm';
-import { isRedirectError } from 'next/dist/client/components/redirect-error';
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-export const signInWithCredentials = async (params: Pick<AuthCredentials, 'email' | 'password'>) => {
-  const { email, password } = params;
+import { eq } from 'drizzle-orm'
+import { db } from '@/database/drizzle'
+import { users } from '@/database/schema'
+import { hash } from '@/lib/encrypt'
+import { signIn, signOut } from '@/auth'
+import { headers } from 'next/headers'
+import ratelimit from '@/lib/ratelimit'
+import { redirect } from 'next/navigation'
+import { workflowClient } from '@/lib/workflow'
+import config from '@/lib/config'
 
-  const ip = (await headers()).get('x-forwarded-for') || '127.0.0.1';
-  const { success } = await ratelimit.limit(ip);
+export const signInWithCredentials = async (
+  params: Pick<AuthCredentials, 'email' | 'password'>
+) => {
+  const { email, password } = params
 
-  if (!success) return redirect('/too-fast');
+  const ip = (await headers()).get('x-forwarded-for') || '127.0.0.1'
+  const { success } = await ratelimit.limit(ip)
+
+  if (!success) return redirect('/too-fast')
 
   try {
     const result = await signIn('credentials', {
       email,
       password,
       redirect: false,
-    });
+    })
 
     if (result?.error) {
-      return { success: false, error: result.error };
+      return { success: false, error: result.error }
     }
 
-    return { success: true };
+    return { success: true }
   } catch (error) {
-    if (isRedirectError(error)) {
-      throw error;
-    }
-    console.log(error, 'Signin error');
-    return { success: false, error: 'Signin error' };
+    console.log(error, 'Signin error')
+    return { success: false, error: 'Signin error' }
   }
-};
+}
 
 export const signUp = async (params: AuthCredentials) => {
-  const { name, email, password, avatar } = params;
+  const { fullName, email, universityId, password, universityCard } = params
 
-  const ip = (await headers()).get('x-forwarded-for') || '127.0.0.1';
-  const { success } = await ratelimit.limit(ip);
+  const ip = (await headers()).get('x-forwarded-for') || '127.0.0.1'
+  const { success } = await ratelimit.limit(ip)
 
-  if (!success) return redirect('/too-fast');
+  if (!success) return redirect('/too-fast')
 
-  const existingUser = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  const existingUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1)
 
   if (existingUser.length > 0) {
-    return { success: false, error: 'User already exists' };
+    return { success: false, error: 'User already exists' }
   }
 
-  const hashedPassword = await hash(password);
+  const hashedPassword = await hash(password)
 
   try {
     await db.insert(users).values({
-      name,
+      fullName,
       email,
-
+      universityId,
       password: hashedPassword,
-      avatar,
-    });
+      universityCard,
+    })
 
     await workflowClient.trigger({
       url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
       body: {
         email,
-        name,
+        fullName,
       },
-    });
+    })
 
-    await signInWithCredentials({ email, password });
+    await signInWithCredentials({ email, password })
 
-    return { success: true };
+    return { success: true }
   } catch (error) {
-    if (isRedirectError(error)) {
-      throw error;
-    }
-    console.log(error, 'Signup error');
-    return { success: false, error: 'Signup error' };
+    console.log(error, 'Signup error')
+    return { success: false, error: 'Signup error' }
   }
-};
+}
 
 export const signOutUser = async () => {
-  return await signOut();
-};
+  return await signOut()
+}
+

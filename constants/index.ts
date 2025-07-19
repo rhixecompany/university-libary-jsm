@@ -1,6 +1,9 @@
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'BookWise';
-export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || 'BookWise is a book borrowing university library management solution.';
-export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'BookWise'
+export const APP_DESCRIPTION =
+  process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
+  'BookWise is a book borrowing university library management solution.'
+export const SERVER_URL =
+  process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 
 export const navigationLinks = [
   {
@@ -14,7 +17,7 @@ export const navigationLinks = [
     href: '/my-profile',
     label: 'My Profile',
   },
-];
+]
 
 export const adminSideBarLinks = [
   {
@@ -42,26 +45,22 @@ export const adminSideBarLinks = [
     route: '/admin/account-requests',
     text: 'Account Requests',
   },
-];
+]
 
-export const USER_FIELD_NAMES = {
-  name: 'Name',
+export const FIELD_NAMES = {
+  fullName: 'Full name',
   email: 'Email',
-  // universityId: 'University ID Number',
+  universityId: 'University ID Number',
   password: 'Password',
-  confirmPassword: 'Confirm Password',
-  avatar: 'Upload Avatar',
-  // callbackUrl: ""
-};
+  universityCard: 'Upload University ID Card',
+}
 
-export const USER_FIELD_TYPES = {
-  name: 'text',
+export const FIELD_TYPES = {
+  fullName: 'text',
   email: 'email',
-  // universityId: 'number',
+  universityId: 'number',
   password: 'password',
-  confirmPassword: 'password',
-  // callbackUrl: "hidden"
-};
+}
 
 export const sampleBooks = [
   {
@@ -88,11 +87,13 @@ export const sampleBooks = [
     rating: 4.9,
     total_copies: 99,
     available_copies: 50,
-    description: 'A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.',
+    description:
+      'A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.',
     color: '#fffdf6',
     cover: 'https://m.media-amazon.com/images/I/81F90H7hnML.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.',
+    summary:
+      'A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.',
   },
   {
     id: 3,
@@ -102,11 +103,14 @@ export const sampleBooks = [
     rating: 4.7,
     total_copies: 9,
     available_copies: 5,
-    description: 'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
+    description:
+      'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
     color: '#f8e036',
-    cover: 'https://m.media-amazon.com/images/I/7186YfjgHHL._AC_UF1000,1000_QL80_.jpg',
+    cover:
+      'https://m.media-amazon.com/images/I/7186YfjgHHL._AC_UF1000,1000_QL80_.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
+    summary:
+      'An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.',
   },
   {
     id: 4,
@@ -116,11 +120,14 @@ export const sampleBooks = [
     rating: 4.5,
     total_copies: 78,
     available_copies: 50,
-    description: 'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
+    description:
+      'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
     color: '#ed6322',
-    cover: 'https://m.media-amazon.com/images/I/61HAE8zahLL._AC_UF1000,1000_QL80_.jpg',
+    cover:
+      'https://m.media-amazon.com/images/I/61HAE8zahLL._AC_UF1000,1000_QL80_.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
+    summary:
+      'A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.',
   },
   {
     id: 5,
@@ -130,11 +137,13 @@ export const sampleBooks = [
     rating: 4.7,
     total_copies: 23,
     available_copies: 23,
-    description: 'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
+    description:
+      'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
     color: '#ffffff',
     cover: 'https://m.media-amazon.com/images/I/81JJ7fyyKyS.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
+    summary:
+      'Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.',
   },
   {
     id: 6,
@@ -144,11 +153,14 @@ export const sampleBooks = [
     rating: 4.8,
     total_copies: 56,
     available_copies: 56,
-    description: 'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
+    description:
+      'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
     color: '#080c0d',
-    cover: 'https://m.media-amazon.com/images/I/71T7aD3EOTL._UF1000,1000_QL80_.jpg',
+    cover:
+      'https://m.media-amazon.com/images/I/71T7aD3EOTL._UF1000,1000_QL80_.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
+    summary:
+      'A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.',
   },
   {
     id: 7,
@@ -158,11 +170,14 @@ export const sampleBooks = [
     rating: 4.8,
     total_copies: 25,
     available_copies: 3,
-    description: 'A timeless guide for developers to hone their skills and improve their programming practices.',
+    description:
+      'A timeless guide for developers to hone their skills and improve their programming practices.',
     color: '#100f15',
-    cover: 'https://m.media-amazon.com/images/I/71VStSjZmpL._AC_UF1000,1000_QL80_.jpg',
+    cover:
+      'https://m.media-amazon.com/images/I/71VStSjZmpL._AC_UF1000,1000_QL80_.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'A timeless guide for developers to hone their skills and improve their programming practices.',
+    summary:
+      'A timeless guide for developers to hone their skills and improve their programming practices.',
   },
   {
     id: 8,
@@ -172,10 +187,13 @@ export const sampleBooks = [
     rating: 4.8,
     total_copies: 10,
     available_copies: 5,
-    description: 'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
+    description:
+      'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
     color: '#ffffff',
-    cover: 'https://m.media-amazon.com/images/I/81Dky+tD+pL._AC_UF1000,1000_QL80_.jpg',
+    cover:
+      'https://m.media-amazon.com/images/I/81Dky+tD+pL._AC_UF1000,1000_QL80_.jpg',
     video: '/sample-video.mp4?updatedAt=1722593504152',
-    summary: 'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
+    summary:
+      'Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.',
   },
-];
+]

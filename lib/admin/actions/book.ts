@@ -4,8 +4,9 @@ import { db } from '@/database/drizzle';
 import { books } from '@/database/schema';
 import { eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
+import type { InsertBook, SelectBook } from '@/database/schema'
 
-export const createBook = async (params: BookParams) => {
+export const createBook = async (params: Omit<InsertBook, 'availableCopies'>) => {
   try {
     const newBook = await db
       .insert(books)
@@ -29,14 +30,15 @@ export const createBook = async (params: BookParams) => {
   }
 };
 
-export const updateBook = async (params: Pick<Book, 'id' | 'title' | 'description' | 'author' | 'genre' | 'rating' | 'totalCopies' | 'coverUrl' | 'videoUrl' | 'summary'>) => {
+export const updateBook = async (id: SelectBook['id'],
+  data: Partial<Omit<SelectBook, 'id'>>) => {
   try {
-    const id = params.id;
+
     const updatedBook = await db
       .update(books)
       .set({
-        ...params,
-        availableCopies: params.totalCopies,
+        ...data,
+        availableCopies: data.totalCopies,
       })
       .where(eq(books.id, id))
       .returning();
@@ -56,7 +58,8 @@ export const updateBook = async (params: Pick<Book, 'id' | 'title' | 'descriptio
   }
 };
 
-export const deleteBook = async (id: string) => {
+export const deleteBook = async (id: SelectBook['id'],
+) => {
   try {
     const deletedBook = await db.delete(books).where(eq(books.id, id)).returning();
     // revalidatePath(`/admin/books/${deletedBook[0].id}`);

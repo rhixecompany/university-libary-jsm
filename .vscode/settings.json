@@ -2,7 +2,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+        "source.fixAll.eslint": "explicit",
+        // "source.fixAll.eslint": "always",
     },
     "editor.minimap.enabled": false,
     "editor.inlineSuggest.enabled": true,
@@ -10,12 +11,12 @@
     "editor.glyphMargin": false,
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "none",
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
+    // "eslint.validate": [
+    //     "javascript",
+    //     "javascriptreact",
+    //     "typescript",
+    //     "typescriptreact"
+    // ],
     "workbench.startupEditor": "none",
     "notebook.output.scrolling": true,
     "files.associations": {
@@ -54,7 +55,7 @@
         "editor.formatOnSave": true
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "vscode.typescript-language-features",
         "editor.formatOnSave": true
     },
     "[typescript]": {
@@ -77,8 +78,8 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[css]": {
-        "editor.defaultFormatter": "vscode.css-language-features",
-        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
     },
     "[prisma]": {
         "editor.defaultFormatter": "Prisma.prisma"
@@ -89,31 +90,17 @@
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[tailwindcss]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": false,
-    },
+    // "[tailwindcss]": {
+    //     "editor.defaultFormatter": "bradlc.vscode-tailwindcss",
+    //     "editor.formatOnSave": true,
+    // },
     "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "sqltools.connections": [
-        {
-            "pgOptions": {
-                "ssl": {
-                    "rejectUnauthorized": true
-                }
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "driver": "PostgreSQL",
-            "name": "neon",
-            "group": "neon",
-            "database": "npg_yeYK3aZx8LWw@ep-misty-truth-a85d73oi-pooler.eastus2.azure.neon.tech",
-            "username": "neondb_owner",
-            "connectString": "postgresql://neondb_owner:npg_yeYK3aZx8LWw@ep-misty-truth-a85d73oi-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
-        }
-    ],
-    "[scss]": {
-        "editor.defaultFormatter": "vscode.css-language-features"
-    }
+    // "[css]": {
+    //     "editor.defaultFormatter": "vscode.css-language-features"
+    // },
+    // "[scss]": {
+    //     "editor.defaultFormatter": "vscode.css-language-features"
+    // }
 }

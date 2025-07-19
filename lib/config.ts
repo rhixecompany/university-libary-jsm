@@ -20,6 +20,6 @@ const config = {
       gmailPassword: process.env.GMAIL_PASSWORD!,
     },
   },
-};
+}
 
-export default config;
+export default config

@@ -1,28 +1,24 @@
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import React from 'react'
 
-const Page = () => {
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const id = (await params).id
+
+
   return (
     <>
+
+
       <Button asChild className="back-btn">
         <Link href="/admin/users">Go Back</Link>
       </Button>
 
       <section className="w-full max-w-2xl">
-        <form action="">
-          <div className="">
-            <div>
-              <label htmlFor="Email">Email</label>
-              <input type="email" name="email" id="email" />
-            </div>
-          </div>
-          <div className="">
-            <button>Submit</button>
-          </div>
-
-        </form>
+        {id}  UserForm
       </section>
     </>
-  );
-};
-export default Page;
+  )
+}
+export default Page

@@ -1,25 +1,22 @@
-import { auth } from '@/auth';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import MyHandler from './myhandler';
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Sign Up',
-};
+import AuthForm from '@/components/AuthForm'
+import { signUpSchema } from '@/lib/validations'
+import { signUp } from '@/lib/actions/auth'
 
-const Page = async (props: {
-  searchParams: Promise<{
-    callbackUrl: string;
-  }>;
-}) => {
-  const { callbackUrl } = await props.searchParams;
+const Page = () => (
+  <AuthForm
+    type="SIGN_UP"
+    schema={signUpSchema}
+    defaultValues={{
+      email: '',
+      password: '',
+      fullName: '',
+      universityId: 0,
+      universityCard: '',
+    }}
+    onSubmit={signUp}
+  />
+)
 
-  const session = await auth();
-
-  if (session) {
-    return redirect(callbackUrl || '/');
-  }
-  return <MyHandler />;
-};
-
-export default Page;
+export default Page

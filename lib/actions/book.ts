@@ -1,22 +1,22 @@
-'use server';
+'use server'
 
-import { db } from '@/database/drizzle';
-import { books, borrowRecords } from '@/database/schema';
-import dayjs from 'dayjs';
-import { desc, eq } from 'drizzle-orm';
+import { db } from '@/database/drizzle'
+import { books, borrowRecords } from '@/database/schema'
+import { eq, asc } from 'drizzle-orm'
+import dayjs from 'dayjs'
+import type { SelectBook } from '@/database/schema';
 
 // Get single book by it's ID
-export async function getBookById(id: string) {
+export async function getbookById(id: SelectBook['id']) {
   // Fetch data based on id
-  const b = await db.select().from(books).where(eq(books.id, id)).limit(1);
-  return b;
+  return db.select().from(books).where(eq(books.id, id));
 }
 
-// Get all books
-export async function getAllBooks() {
-  const latestBooks = (await db.select().from(books).orderBy(desc(books.createdAt))) as Book[];
-  return latestBooks;
+// Get all bookss
+export async function getAllbooks() {
+  return db.select().from(books).orderBy(asc(books.title), asc(books.createdAt));
 }
+
 
 export const borrowBook = async (params: BorrowBookParams) => {
   const { userId, bookId } = params;
