@@ -50,7 +50,7 @@ export const signUp = async (params: AuthCredentials) => {
   const existingUser = await db
     .select()
     .from(users)
-    .where(eq(users.email, email))
+    .where(eq(users.email, email.toLowerCase()))
     .limit(1)
 
   if (existingUser.length > 0) {
@@ -62,7 +62,7 @@ export const signUp = async (params: AuthCredentials) => {
   try {
     await db.insert(users).values({
       fullName,
-      email,
+      email: email.toLowerCase(),
       universityId,
       password: hashedPassword,
       universityCard,

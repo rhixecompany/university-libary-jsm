@@ -34,7 +34,7 @@ export const borrowBook = async (params: BorrowBookParams) => {
       }
     }
 
-    const dueDate = dayjs().add(7, 'day').toDate().toDateString()
+    const dueDate = dayjs().add(7, 'day').toDate()
 
     const record = await db.insert(borrowRecords).values({
       userId,
