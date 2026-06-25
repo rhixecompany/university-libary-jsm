@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+        "usernamehw.errorlens",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.npm-intellisense",
+        "Prisma.prisma",
+        "charliermarsh.ruff"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.vscode-typescript-tslint-plugin",
+        "hookyqr.beautify"
+    ]
+}

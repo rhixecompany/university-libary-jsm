@@ -1,41 +1,38 @@
-# University Library JSM - Library Management Context
-
-Next.js 15 library management system with Drizzle, Neon, and Redis.
+# University Library JSM
 
 ## Architecture
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Database**: Drizzle ORM + Neon (serverless Postgres)
-- **Cache**: Redis
-- **Auth**: NextAuth.js
-- **Deployment**: Vercel + Neon
+- **Type:** Next.js library management system
+- **Pattern:** App Router with Drizzle ORM, Neon serverless PostgreSQL, Redis caching
+- **Reference:** [Workflow Analysis](docs/Project_Architecture/Workflow_Analysis.md), [Exemplars](docs/Project_Architecture/exemplars.md)
 
-## Conventions
-- TypeScript strict mode
-- Server Components by default
-- API routes in `src/app/api/`
-- Drizzle schema in `src/db/schema.ts`
-- Redis for session caching
-- Environment variables in `.env.local`
+Next.js 15 + Drizzle ORM + Neon (serverless PostgreSQL) + Redis (Upstash). Full-stack library management with book tracking, user management, and session caching.
+
+## Stack
+- **Frontend:** Next.js 15, TypeScript (strict), App Router
+- **Database:** PostgreSQL via Drizzle ORM / Neon
+- **Cache:** Redis (Upstash) for session caching and rate limiting
+- **Auth:** NextAuth.js
+- **Deploy:** Vercel + Neon
 
 ## Commands
 ```bash
-# Dev server
 npm run dev
-
-# Build
 npm run build
-
-# Database
+npm run lint
 npm run db:generate
 npm run db:push
 npm run db:studio
-
-# Lint
-npm run lint
 ```
 
-## Important Notes
-- Neon connection string in `.env.local` — never commit
-- Redis for rate limiting and caching
-- Drizzle migrations managed via `db:push`
+## Conventions
+- Schema in Drizzle files under `src/db/`
+- Redis for session caching and API rate limiting
+- `.env.local` — never commit; Neon and Upstash credentials required
+- Drizzle migrations via `db:push` for schema updates
+- Node 18+ required
+
+## Notes
+- Serverless PostgreSQL via Neon (connection pooling)
+- Upstash Redis for serverless-compatible caching
+- Drizzle Studio for DB inspection
+- Vercel + Neon for production deployment
