@@ -1,29 +1,29 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "command": "npm run dev",
-            "name": "Next.js: Dev Server",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "command": "npm run build",
-            "name": "Next.js: Build",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "command": "npm run lint",
-            "name": "Next.js: Lint",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "command": "npx tsc --noEmit",
-            "name": "TypeScript: Type Check",
-            "request": "launch",
-            "type": "node-terminal"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm run dev",
+      "name": "Next.js: Dev Server",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run build",
+      "name": "Next.js: Build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run lint",
+      "name": "Next.js: Lint",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "name": "TypeScript: Type Check",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
 }
