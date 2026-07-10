@@ -63,7 +63,7 @@ npm run db:seed
 npm run dev
 ```
 
-Visit http://localhost:3000
+Visit <http://localhost:3000>
 
 ## Available Scripts
 
@@ -114,6 +114,7 @@ src/
 ### Schema
 
 The database schema is defined in `database/schema.ts` using Drizzle ORM. Key tables:
+
 - `users` - Library members
 - `books` - Book catalog
 - `borrowRecords` - Borrowing history
@@ -134,6 +135,7 @@ npx drizzle-kit push
 ### Queries
 
 Use functions from `lib/queries/` for database operations:
+
 - `select.ts` - Read operations
 - `insert.ts` - Create operations
 - `update.ts` - Update operations
@@ -142,6 +144,7 @@ Use functions from `lib/queries/` for database operations:
 ## Server Actions
 
 Use Server Actions in `lib/actions/` for mutations:
+
 - Keep actions small and focused
 - Validate input with Zod
 - Return meaningful errors
@@ -158,15 +161,18 @@ npm run lint
 ## Troubleshooting
 
 ### Database Connection Issues
+
 - Verify `DATABASE_URL` is correct
 - Check Neon SSL configuration
 - Ensure IP is allowlisted in Neon
 
 ### Rate Limiting Errors
+
 - Verify Upstash credentials
 - Check Redis quota in Upstash dashboard
 
 ### Email Not Sending
+
 - Verify SMTP configuration
 - Check app email settings
 - Use Mailtrap for development

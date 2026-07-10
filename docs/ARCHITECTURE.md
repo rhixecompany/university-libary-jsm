@@ -155,19 +155,23 @@ borrowRecords {
 ## External Integrations
 
 ### Neon Database
+
 - Serverless PostgreSQL
 - Connection via `@neondatabase/serverless`
 - Drizzle ORM for type-safe queries
 
 ### Upstash
+
 - Redis for rate limiting
 - Workflow state management
 
 ### ImageKit
+
 - CDN for book cover images
 - Upload via `/api/imagekit` route
 
 ### Email (React Email + Nodemailer)
+
 - `user-welcome.tsx` - New user welcome
 - `reset-password.tsx` - Password reset
 - `weekly-digest.tsx` - Weekly activity digest
@@ -194,6 +198,7 @@ export function InteractiveComponent() {
 ### Server Actions
 
 Mutations use Server Actions in `lib/actions/`:
+
 - `auth.ts` - Authentication-related actions
 - `book.ts` - Book borrowing operations
 - `user.ts` - User profile updates

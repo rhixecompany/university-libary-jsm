@@ -49,12 +49,14 @@
 ## Roles and Permissions
 
 ### Regular User
+
 - Browse library catalog
 - Request book borrowing
 - View own profile and history
 - Cannot access admin panel
 
 ### Administrator
+
 - All user permissions
 - Approve/reject user registrations
 - Manage book catalog (add, edit, delete)
@@ -64,16 +66,19 @@
 ## Troubleshooting
 
 ### Can't Sign In
+
 - Verify your account is approved (check email)
 - Ensure credentials are correct
 - Contact admin if issues persist
 
 ### Can't Borrow Books
+
 - Verify you have no overdue books
 - Check book availability
 - Ensure your account is active
 
 ### Book Not Available
+
 - Join waitlist if available
 - Check back later for returns
 - Contact admin for assistance

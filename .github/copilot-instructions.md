@@ -39,4 +39,3 @@ npm start
 - Avoid N+1 queries by using Drizzle eager loading.
 - Keep component and file naming aligned with shadcn/ui conventions.
 - Use environment variables for auth, storage, and workflow credentials.
-

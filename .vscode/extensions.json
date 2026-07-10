@@ -1,14 +1,15 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-next",
-    "usernamehw.errorlens",
-    "formulahendry.auto-rename-tag",
-    "christian-kohler.npm-intellisense",
     "Prisma.prisma",
-    "charliermarsh.ruff"
+    "bradlc.vscode-tailwindcss",
+    "charliermarsh.ruff",
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "foxundermoon.shell-format",
+    "ms-vscode.vscode-typescript-next",
+    "usernamehw.errorlens"
   ],
   "unwantedRecommendations": [
     "ms-vscode.vscode-typescript-tslint-plugin",
