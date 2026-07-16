@@ -1,115 +1,97 @@
 # University Library JSM — Research Report
 
-**Project:** university-libary-jsm
-**Stack:** Next.js 15, Drizzle ORM, Neon (serverless PostgreSQL), Upstash Redis, NextAuth v5, ImageKit, Nodemailer, Upstash QStash
-**Report Date:** 2026-07-16
-**Mode:** UPDATE (trimmed to size gate)
+**Type:** Next.js 15 library management system (full-stack)
+**Tech Stack:** Next.js 15 (App Router, TS strict), Drizzle ORM, Neon serverless PostgreSQL, Upstash Redis, NextAuth/Auth.js v5, ImageKit, Tailwind/shadcn, Zod
+**Status:** Active
+**Updated:** 2026-07-16
 
 ---
 
 ## Similar Projects
 
-| Project | URL | Why Relevant |
-|---------|-----|--------------|
-| Banking | `projects/Banking` | Shared Next.js + Drizzle ORM + Neon patterns |
-| comicwise | `projects/comicwise` | Shared Next.js + Drizzle + Upstack Redis |
-| rhixe_scans | `projects/rhixe_scans` | Shared Next.js + Prisma + auth patterns |
-| university-libary-jsm | `projects/university-libary-jsm` | Self (Next.js + Drizzle reference) |
-
----
+| Project | Why Relevant |
+|---------|--------------|
+| `ChanMeng666/library-os` (LibraryOS) | Next.js + Drizzle multi-tenant library reference (swap Supabase → Drizzle+Neon) |
+| Cal.com | Scheduling + RBAC architecture reference for auth/sessions |
+| Rallly | Clean React/Next.js UX patterns for catalog UIs |
+| Auth.js Drizzle Adapter (now Better Auth) | Official DB session adapter for NextAuth v5 |
 
 ## Key Findings
+### Project Architecture
+- `src/app/` routing-only; business logic in `src/features/` and `src/db/queries/`
+- Schema files (books.ts, members.ts, loans.ts) colocated under `src/db/schema/`
+- Server Actions in `src/actions/` — importable by Server and Client Components
 
-### Next.js 15 + Drizzle ORM + Neon Serverless
-- Use `@neondatabase/serverless` with `drizzle-orm/neon-http` for HTTP-based serverless connections
-- `drizzle-orm/neon-serverless` for WebSocket connections in long-running processes (QStash workers)
-- Drizzle + Neon HTTP driver avoids cold-start tax of TCP drivers — ideal for Vercel Edge
-- Neon database branching for preview deployments (copy-on-write branches in seconds)
-- Enable connection pooling via `?pooler=true` in connection string for high-concurrency operations
+### Drizzle ORM + Neon
+- `@neondatabase/serverless` + `drizzle-orm/neon-http` — zero cold start, edge-ready
+- **Drizzle 0.44.x/0.45.x** current; ~900K weekly downloads, runs on Edge/Bun/Deno
+- Core entities: books (totalCopies/availableCopies), members (membershipType), loans (status/renewedCount), fines (cents)
+- Indexes on ISBN, genre, author, title; `relations()` for books↔loans↔members
+- Migrations via `drizzle-kit generate` + migrate; never edit `_journal.json`
 
-### Upstash Redis Caching & Rate Limiting
-- `@upstash/ratelimit` — HTTP-based, connectionless, works on Vercel Edge
-- Rate limit `/api/books/search` at 60 req/min per IP; member tier at 500 req/min
-- Cache book search results (TTL 5min), popular books (TTL 1hr), member profiles (TTL 15min)
-- Sliding window algorithm: `Ratelimit.slidingWindow(100, "60 s")` for smooth enforcement
+### Next.js 15 App Router
+- Server Components by default — fetch data directly, no `useEffect` for initial loads
+- Server Actions (`"use server"`) — always `revalidatePath()` after mutations
+- Parallel fetch: `Promise.all([getBooks(), getMembers()])` avoids waterfalls; Zod + `drizzle-zod` for DB-synced validation
 
-### NextAuth v5 + Drizzle Adapter
-- Official `@auth/drizzle-adapter` package for schema integration
-- Database sessions recommended for library systems (revocable, auditable) vs JWT
-- Pass `schema` object to `DrizzleAdapter(db, schema)` with custom table references
-
----
+### Redis Caching (Upstash)
+- Cache-aside: catalog TTL 5min, search TTL 2min, profiles TTL 30min
+- Write-through: active loans TTL 1min (consistency-critical)
+- Sliding-window rate limiting (60 req/min search, 500 req/min members)
 
 ## Cheatsheets & Quick Reference
 
-| Topic | Resource | Type |
-|-------|----------|------|
-| Drizzle + Neon | <https://orm.drizzle.team/docs/tutorials/drizzle-nextjs-neon> | Tutorial |
-| Upstash Ratelimit | <https://upstash.com/docs/redis/sdks/ratelimit-ts/overview> | Docs |
-| Neon Serverless | <https://neon.tech/docs/serverless/serverless-driver> | Docs |
-
----
+| Task | Command |
+|------|---------|
+| Generate migration | `drizzle-kit generate` |
+| Apply to Neon | `drizzle-kit migrate` / `db:push` |
+| Drizzle Studio | `npm run db:studio` |
+| Type-safe query | `db.select().from(books).where(eq(books.isbn, x))` |
+| Cache read | `await redis.get(\`catalog:\${id}\`)` |
 
 ## Best Practices
-
-1. **Drizzle + Neon HTTP driver** — connectionless, zero cold start, ideal for serverless
-2. **Rate-limited API endpoints** — Upstash Redis for catalog search and auth
-3. **Database sessions for library auth** — revocable, auditable; not JWT
-4. **Neon branching for preview** — copy-on-write branches per deployment
-5. **TanStack Query for catalog caching** — client-side cache with proper invalidation
-
----
+1. Use query builders (`eq()`, `gt()`) — injection-safe; avoid raw SQL string interpolation
+2. Project specific columns (no `select().from()` without columns) to limit payload
+3. `revalidatePath()`/`revalidateTag()` after every mutation
+4. Use `-pooler` Neon hostname (PgBouncer); branch per feature (copy-on-write)
+5. Keep Drizzle ≥0.45.2 (CVE fix) and pin via `bun.lock`/`package-lock`
+6. Use DB sessions (Drizzle adapter) over JWT for revocable sessions
 
 ## Common Pitfalls
 
-| Pitfall | Impact | Avoidance |
-|---------|--------|-----------|
-| TCP driver cold start | Slow first request | `neon-http` driver for HTTP connections |
-| Missing rate limiting | API abuse | Upstash ratelimit on search/auth endpoints |
-| JWT sessions for library | Irrevocable tokens | Database sessions with revocation |
-| Cached stale catalog | Users see outdated data | TanStack Query `staleTime` + invalidation |
-
----
+| Area | Pitfall | Fix |
+|------|---------|-----|
+| Drizzle | Editing `_journal.json` | Use `drizzle-kit generate` only |
+| Drizzle | `select().from()` no columns | Always project specific columns |
+| Next.js | Missing revalidation | `revalidatePath()` every mutation |
+| Neon | Connection exhaustion | `neon-http` driver or pooler |
+| Redis | No fallback | Implement direct DB fallback |
+| Redis | Stale data | Appropriate TTLs; write-through for critical data |
 
 ## Performance
-
-1. **Neon HTTP driver** — zero cold start for serverless Edge Functions
-2. **Upstash Redis caching** — sub-ms lookup for catalog and session data
-3. **Neon connection pooling** — handle high-concurrency loan operations
-4. **TanStack Query prefetch** — prefetch next search results in background
-5. **ImageKit CDN** — optimized book cover image delivery
-
----
+- DB indexes on filtered/sorted columns; prepared statements; paginate large lists
+- Server Components eliminate client waterfalls; Suspense streaming for slow data
+- ISR for static catalog pages; dynamic imports for heavy components
+- `neon-http` mitigates 5min-idle cold start (~500ms) on free tier
+- Upstash Redis hit-rate monitoring surfaces slow queries
 
 ## Security
-
-1. **Rate limit search endpoints** — prevent API abuse; sliding window per IP
-2. **Database sessions** — revocable, auditable library member authentication
-3. **Signed media URLs** — ImageKit secure URL tokens for member-only content
-4. **Input validation** — Zod schemas for all API inputs
-5. **Environment-specific secrets** — separate keys for dev/staging/production
-
----
+1. **CVE-2026-39356** (Snyk SNYK-JS-DRIZZLEORM-16000009): SQL injection via `escapeName` in `sql.identifier()`/`sql.as()` — affects `>=0.37.0 <0.45.2`. **Upgrade to drizzle-orm ≥0.45.2** immediately.
+2. Query builders are injection-safe; never pass untrusted input to `sql.identifier()`
+3. NextAuth/Auth.js v5 + Drizzle adapter for revocable DB sessions (Auth.js now part of Better Auth)
+4. Zod validation in Server Actions; Upstash ratelimit at edge middleware
+5. `next/image` + `next/font` to avoid layout shift / external font leaks
 
 ## Related Projects (in workspace)
-
-- **Banking** — shared Next.js + Drizzle ORM + Neon patterns
-- **comicwise** — shared Next.js + Drizzle + Upstash Redis patterns
-- **rhixe_scans** — shared Next.js + Prisma + auth patterns
-
----
+- See `projects/RESEARCH_INDEX.md` for cross-project references (Bash, xamehi, ecom share infra).
 
 ## Resources
 
-| Resource | URL | Description |
-|----------|-----|-------------|
-| Drizzle + Next.js | <https://orm.drizzle.team/docs/tutorials/drizzle-nextjs-neon> | Integration tutorial |
-| Upstash Redis | <https://upstash.com/docs/redis/overall/getstarted> | Serverless Redis |
-| Neon Serverless | <https://neon.tech/docs> | Serverless PostgreSQL |
-| Auth.js Drizzle | <https://authjs.dev/reference/drizzle-adapter> | Auth adapter |
-
-### Research Methodology
-- **Web search:** web_search (2026 Drizzle + Neon patterns)
-- **Documentation:** web_extract (Upstash, Neon, Drizzle docs)
-- **Database research:** serverless PostgreSQL connection patterns
-- **Last verified:** 2026-07-16
+| Resource | URL |
+|----------|-----|
+| Drizzle ORM docs | https://orm.drizzle.team/docs/overview |
+| Drizzle + Neon guide | https://neon.com/blog/nextjs-authentication-using-clerk-drizzle-orm-and-neon |
+| Auth.js Drizzle Adapter | https://authjs.dev/getting-started/adapters/drizzle |
+| CVE-2026-39356 (Snyk) | https://security.snyk.io/vuln/SNYK-JS-DRIZZLEORM-16000009 |
+| Next.js Server Actions | https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions |
+| Upstash Redis | https://upstash.com/docs/redis |

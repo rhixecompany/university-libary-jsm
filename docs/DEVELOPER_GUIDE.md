@@ -68,7 +68,7 @@ Visit <http://localhost:3000>
 ## Available Scripts
 
 | Command | Description |
-|---------|-------------|
+| --------- | ------------- |
 | `npm run dev` | Start dev server with Turbopack |
 | `npm run build` | Production build |
 | `npm run start` | Start production server |

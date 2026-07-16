@@ -9,7 +9,7 @@ A university library management system built with Next.js 15, using Drizzle ORM 
 ## Technology Stack
 
 | Category | Technology |
-|---|---|
+| --- | --- |
 | **Framework** | Next.js 15.4.2 (App Router) |
 | **Language** | TypeScript ^5 (strict) |
 | **UI** | React 19.1.0, Radix UI, shadcn/ui, Tailwind CSS 4.x |
@@ -138,7 +138,7 @@ npm run db:studio        # Open Drizzle Studio
 ## External Integrations
 
 | Service | Purpose |
-|---|---|
+| --- | --- |
 | **Neon** | Serverless PostgreSQL database |
 | **Upstash Redis** | Caching and rate limiting |
 | **Upstash QStash** | Async workflows |

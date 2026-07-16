@@ -80,7 +80,7 @@ app/
 ### Key Directories
 
 | Directory | Purpose |
-|-----------|---------|
+| ----------- | --------- |
 | `components/ui/` | Reusable UI components (shadcn) |
 | `components/admin/` | Admin-specific components |
 | `lib/actions/` | Server actions for mutations |
@@ -210,7 +210,7 @@ Mutations use Server Actions in `lib/actions/`:
 ### Environment Variables
 
 | Variable | Purpose |
-|----------|---------|
+| ---------- | --------- |
 | `DATABASE_URL` | Neon PostgreSQL connection |
 | `NEXTAUTH_SECRET` | JWT signing key |
 | `NEXTAUTH_URL` | App URL for auth |
