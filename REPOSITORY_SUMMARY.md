@@ -11,29 +11,29 @@
 
 ## Architecture
 
-| Property | Value |
-|----------|-------|
-| **Framework** | Next.js 15 (App Router, Turbopack) |
-| **Language** | TypeScript (strict) |
-| **Database** | PostgreSQL via Drizzle ORM / Neon |
-| **Cache** | Redis (Upstash) for sessions + rate limiting |
-| **Auth** | NextAuth.js v5 |
-| **Deploy** | Vercel + Neon |
+| Property      | Value                                        |
+| ------------- | -------------------------------------------- |
+| **Framework** | Next.js 15 (App Router, Turbopack)           |
+| **Language**  | TypeScript (strict)                          |
+| **Database**  | PostgreSQL via Drizzle ORM / Neon            |
+| **Cache**     | Redis (Upstash) for sessions + rate limiting |
+| **Auth**      | NextAuth.js v5                               |
+| **Deploy**    | Vercel + Neon                                |
 
 ---
 
 ## Technology Stack
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | Next.js 15, React 19, TypeScript strict, Tailwind CSS |
-| UI Components | @dnd-kit (drag-drop), Radix UI, shadcn/ui |
-| Forms | React Hook Form + Zod validation |
-| Database | Drizzle ORM, Neon serverless PostgreSQL |
-| Cache/Auth | Upstash Redis, NextAuth.js |
-| Email | Upstash QStash (dev) |
-| Quality | ESLint, Prettier, TypeScript strict |
-| Package Manager | npm |
+| Layer           | Technology                                            |
+| --------------- | ----------------------------------------------------- |
+| Frontend        | Next.js 15, React 19, TypeScript strict, Tailwind CSS |
+| UI Components   | @dnd-kit (drag-drop), Radix UI, shadcn/ui             |
+| Forms           | React Hook Form + Zod validation                      |
+| Database        | Drizzle ORM, Neon serverless PostgreSQL               |
+| Cache/Auth      | Upstash Redis, NextAuth.js                            |
+| Email           | Upstash QStash (dev)                                  |
+| Quality         | ESLint, Prettier, TypeScript strict                   |
+| Package Manager | npm                                                   |
 
 ---
 

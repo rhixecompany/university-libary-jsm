@@ -79,14 +79,14 @@ app/
 
 ### Key Directories
 
-| Directory | Purpose |
-|-----------|---------|
-| `components/ui/` | Reusable UI components (shadcn) |
-| `components/admin/` | Admin-specific components |
-| `lib/actions/` | Server actions for mutations |
-| `lib/queries/` | Database query functions |
-| `database/` | Drizzle schema and config |
-| `emails/` | Email templates (React Email) |
+| Directory           | Purpose                         |
+| ------------------- | ------------------------------- |
+| `components/ui/`    | Reusable UI components (shadcn) |
+| `components/admin/` | Admin-specific components       |
+| `lib/actions/`      | Server actions for mutations    |
+| `lib/queries/`      | Database query functions        |
+| `database/`         | Drizzle schema and config       |
+| `emails/`           | Email templates (React Email)   |
 
 ## Data Model
 
@@ -209,18 +209,18 @@ Mutations use Server Actions in `lib/actions/`:
 
 ### Environment Variables
 
-| Variable | Purpose |
-|----------|---------|
-| `DATABASE_URL` | Neon PostgreSQL connection |
-| `NEXTAUTH_SECRET` | JWT signing key |
-| `NEXTAUTH_URL` | App URL for auth |
-| `UPSTASH_REDIS_REST_URL` | Upstash Redis |
-| `UPSTASH_REDIS_REST_TOKEN` | Upstash auth |
-| `IMAGEKIT_PUBLIC_KEY` | ImageKit API key |
-| `IMAGEKIT_PRIVATE_KEY` | ImageKit secret |
-| `SMTP_HOST` | Email server |
-| `SMTP_USER` | Email credentials |
-| `SMTP_PASS` | Email password |
+| Variable                   | Purpose                    |
+| -------------------------- | -------------------------- |
+| `DATABASE_URL`             | Neon PostgreSQL connection |
+| `NEXTAUTH_SECRET`          | JWT signing key            |
+| `NEXTAUTH_URL`             | App URL for auth           |
+| `UPSTASH_REDIS_REST_URL`   | Upstash Redis              |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash auth               |
+| `IMAGEKIT_PUBLIC_KEY`      | ImageKit API key           |
+| `IMAGEKIT_PRIVATE_KEY`     | ImageKit secret            |
+| `SMTP_HOST`                | Email server               |
+| `SMTP_USER`                | Email credentials          |
+| `SMTP_PASS`                | Email password             |
 
 ## Performance Considerations
 

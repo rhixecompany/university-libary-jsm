@@ -4,15 +4,14 @@
     "bradlc.vscode-tailwindcss",
     "charliermarsh.ruff",
     "christian-kohler.npm-intellisense",
+    "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "formulahendry.auto-rename-tag",
     "foxundermoon.shell-format",
     "ms-vscode.vscode-typescript-next",
+    "streetsidesoftware.code-spell-checker",
     "usernamehw.errorlens"
   ],
-  "unwantedRecommendations": [
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "hookyqr.beautify"
-  ]
+  "unwantedRecommendations": ["ms-vscode.vscode-typescript-tslint-plugin", "hookyqr.beautify"]
 }

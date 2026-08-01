@@ -67,16 +67,16 @@ Visit <http://localhost:3000>
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server with Turbopack |
-| `npm run build` | Production build |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format code with Prettier |
-| `npm run db:seed` | Seed database with sample data |
-| `npm run db:push` | Push schema to database |
-| `npm run db:studio` | Open Drizzle Studio |
+| Command             | Description                     |
+| ------------------- | ------------------------------- |
+| `npm run dev`       | Start dev server with Turbopack |
+| `npm run build`     | Production build                |
+| `npm run start`     | Start production server         |
+| `npm run lint`      | Run ESLint                      |
+| `npm run format`    | Format code with Prettier       |
+| `npm run db:seed`   | Seed database with sample data  |
+| `npm run db:push`   | Push schema to database         |
+| `npm run db:studio` | Open Drizzle Studio             |
 
 ## Project Structure
 

@@ -6,6 +6,12 @@
   },
   "editor.minimap.enabled": false,
   "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.profiles.windows": {
+    "Command Prompt": { "icon": "terminal-cmd", "path": "cmd.exe" },
+    "Git Bash": { "icon": "terminal-bash", "source": "Git Bash" },
+    "PowerShell": { "icon": "terminal-powershell", "source": "PowerShell" }
+  },
   "editor.lineHeight": 17,
   "editor.glyphMargin": false,
   "editor.fontLigatures": true,
