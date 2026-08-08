@@ -73,23 +73,23 @@ university-libary-jsm/
 # Prerequisites: Node.js 18+, Neon PostgreSQL database
 
 # Install dependencies
-npm install
+bun install
 
 # Set up environment
 cp .env.example .env.local
 # Configure database URL, NextAuth secrets, Upstash Redis, etc.
 
 # Database setup
-npm run db:generate
-npm run db:push         # or npm run db:migrate
-npm run db:studio       # Optional: Drizzle Studio
+bun run db:generate
+bun run db:push         # or bun run db:migrate
+bun run db:studio       # Optional: Drizzle Studio
 
 # Start development server
-npm run dev
+bun run dev
 
 # Run linting and formatting
-npm run lint
-npm run format
+bun run lint
+bun run format
 ```
 
 ## Key Features
@@ -105,15 +105,15 @@ npm run format
 ## Development Workflow
 
 ```bash
-npm run dev              # Dev server with Turbopack
-npm run build            # Production build
-npm run lint             # ESLint
-npm run format           # Prettier
-npm run format:check     # Prettier check
-npm run db:generate      # Generate Drizzle migrations
-npm run db:push          # Push schema to database
-npm run db:migrate       # Apply migrations
-npm run db:studio        # Open Drizzle Studio
+bun run dev              # Dev server with Turbopack
+bun run build            # Production build
+bun run lint             # ESLint
+bun run format           # Prettier
+bun run format:check     # Prettier check
+bun run db:generate      # Generate Drizzle migrations
+bun run db:push          # Push schema to database
+bun run db:migrate       # Apply migrations
+bun run db:studio        # Open Drizzle Studio
 ```
 
 ## Coding Standards

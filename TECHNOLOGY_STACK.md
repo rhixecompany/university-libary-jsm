@@ -186,7 +186,7 @@ export const sessions = pgTable('sessions', {
 | `db:migrate`  | `drizzle-kit migrate`         | Run migrations            |
 | `db:studio`   | `drizzle-kit studio`          | Drizzle Studio UI         |
 | `dev:email`   | `email dev`                   | React Email preview       |
-| `dev:upstash` | `npx @upstash/qstash-cli dev` | Local QStash              |
+| `dev:upstash` | `bunx @upstash/qstash-cli dev` | Local QStash              |
 
 ---
 
@@ -246,11 +246,11 @@ university-libary-jsm/
 
 **Workflow:** `.github/workflows/university-libary-jsm-ci.yml`
 
-1. **Install** → `npm ci`
-2. **Type Check** → `npx tsc --noEmit`
-3. **Lint** → `npm run lint`
-4. **Format Check** → `npm run format:check`
-5. **Build** → `npm run build`
+1. **Install** → `bun install --frozen-lockfile`
+2. **Type Check** → `bunx tsc --noEmit`
+3. **Lint** → `bun run lint`
+4. **Format Check** → `bun run format:check`
+5. **Build** → `bun run build`
 6. **Deploy** → Vercel (on merge to `staged`)
 
 ---

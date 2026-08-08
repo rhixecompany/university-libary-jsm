@@ -74,26 +74,26 @@ university-libary-jsm/
 
 ```bash
 # Install
-npm install
+bun install
 
 # Database
-npm run db:generate    # Generate Drizzle migrations
-npm run db:push        # Push schema to DB
-npm run db:studio      # Drizzle Studio
-npm run db:migrate     # Run migrations
-npm run db:seed        # Seed data
+bun run db:generate    # Generate Drizzle migrations
+bun run db:push        # Push schema to DB
+bun run db:studio      # Drizzle Studio
+bun run db:migrate     # Run migrations
+bun run db:seed        # Seed data
 
 # Development
-npm run dev            # Next.js + Turbopack
+bun run dev            # Next.js + Turbopack
 
 # Quality
-npm run lint           # ESLint
-npm run format         # Prettier write
-npm run format:check   # Prettier check
+bun run lint           # ESLint
+bun run format         # Prettier write
+bun run format:check   # Prettier check
 
 # Email dev
-npm run dev:email      # Email preview
-npm run dev:upstash    # QStash dev
+bun run dev:email      # Email preview
+bun run dev:upstash    # QStash dev
 ```
 
 ---

@@ -13,18 +13,18 @@ Project-wide guidance for BookWise.
 Run from the project root:
 
 ```bash
-npm install
-npm run dev
-npm run lint
-npm run format
-npx tsc --noEmit
-npm run db:push
-npm run db:seed
-npm run db:generate
-npm run db:migrate
-npm run db:studio
-npm run build
-npm start
+bun install
+bun run dev
+bun run lint
+bun run format
+bunx tsc --noEmit
+bun run db:push
+bun run db:seed
+bun run db:generate
+bun run db:migrate
+bun run db:studio
+bun run build
+bun run start
 ```
 
 ## Architecture

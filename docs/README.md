@@ -34,19 +34,19 @@ git clone https://github.com/rhixecompany/university-libary-jsm.git
 cd university-libary-jsm
 
 # Install dependencies
-npm install
+bun install
 
 # Set up environment variables
 # Create .env file with required variables (see DEVELOPER_GUIDE.md)
 
 # Run database migrations
-npm run db:migrate
+bun run db:migrate
 
 # Seed the database with sample data
-npm run db:seed
+bun run db:seed
 
 # Start development server
-npm run dev
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.

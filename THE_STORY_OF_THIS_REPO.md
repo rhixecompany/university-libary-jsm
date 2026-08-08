@@ -137,7 +137,7 @@ Cron via Vercel Cron Jobs (daily 6 AM). Upstash QStash for reliability.
 ## Chapter 6: Drizzle Studio — The Librarian's Dashboard
 
 ```bash
-npm run db:studio
+bun run db:studio
 ```
 
 Opens at `localhost:4983`. Visual table editor. Filter, sort, edit. Librarians use it directly for bulk imports, data fixes.
