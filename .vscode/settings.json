@@ -2,79 +2,39 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-  "editor.minimap.enabled": false,
   "editor.inlineSuggest.enabled": true,
-  "editor.lineHeight": 17,
-  "editor.glyphMargin": false,
-  "editor.fontLigatures": true,
-  "editor.renderWhitespace": "none",
-  "workbench.startupEditor": "none",
-  "notebook.output.scrolling": true,
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "files.exclude": {
-    "**/*.csv": true,
-    "**/*.parquet": true,
-    "**/*.pkl": true,
-    "**/*.xls": true,
-    "out": false
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "css": "css",
+    "scss": "scss",
+    "javascript": "jsx",
+    "typescript": "tsx"
   },
-  "search.exclude": {
-    "out": true
-  },
-  "breadcrumbs.enabled": false,
-  "explorer.decorations.badges": false,
-  "explorer.decorations.colors": false,
-  "git.enableSmartCommit": true,
-  "window.commandCenter": true,
-  "markdown.validate.enabled": true,
-  "markdown.updateLinksOnFileMove.enabled": "prompt",
-  "typescript.tsc.autoDetect": "on",
-  "terminal.integrated.gpuAcceleration": "off",
-  "terminal.integrated.ignoreBracketedPasteMode": true,
-  "terminal.integrated.minimumContrastRatio": 1,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[dotenv]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "WillLuke.nextjs.addTypesOnSave": true,
-  "WillLuke.nextjs.hasPrompted": true,
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  },
-  "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

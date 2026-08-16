@@ -13,7 +13,7 @@
 ```bash
 git clone https://github.com/rhixecompany/university-libary-jsm.git
 cd university-libary-jsm
-npm install
+bun install
 ```
 
 ### 2. Environment Configuration
@@ -48,35 +48,35 @@ SMTP_PASS=password
 
 ```bash
 # Push schema to database
-npm run db:push
+bun run db:push
 
 # Generate migration files
-npm run db:generate
+bun run db:generate
 
 # Seed with sample data
-npm run db:seed
+bun run db:seed
 ```
 
 ### 4. Start Development Server
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Visit <http://localhost:3000>
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server with Turbopack |
-| `npm run build` | Production build |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format code with Prettier |
-| `npm run db:seed` | Seed database with sample data |
-| `npm run db:push` | Push schema to database |
-| `npm run db:studio` | Open Drizzle Studio |
+| Command             | Description                     |
+| ------------------- | ------------------------------- |
+| `bun run dev`       | Start dev server with Turbopack |
+| `bun run build`     | Production build                |
+| `bun run start`     | Start production server         |
+| `bun run lint`      | Run ESLint                      |
+| `bun run format`    | Format code with Prettier       |
+| `bun run db:seed`   | Seed database with sample data  |
+| `bun run db:push`   | Push schema to database         |
+| `bun run db:studio` | Open Drizzle Studio             |
 
 ## Project Structure
 
@@ -123,13 +123,13 @@ The database schema is defined in `database/schema.ts` using Drizzle ORM. Key ta
 
 ```bash
 # Create new migration
-npx drizzle-kit generate
+bunx drizzle-kit generate
 
 # Apply migrations
-npx drizzle-kit migrate
+bunx drizzle-kit migrate
 
 # Push schema (dev only)
-npx drizzle-kit push
+bunx drizzle-kit push
 ```
 
 ### Queries
@@ -155,7 +155,7 @@ Use Server Actions in `lib/actions/` for mutations:
 Run lint and type checks:
 
 ```bash
-npm run lint
+bun run lint
 ```
 
 ## Troubleshooting

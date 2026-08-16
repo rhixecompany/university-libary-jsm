@@ -1,0 +1,14 @@
+# university-libary-jsm — Bun configuration
+# Next.js library management system (Drizzle + Neon + Redis)
+
+[build]
+loader = false
+
+[test]
+coverage = true
+root = "./src"
+
+[install]
+optional = true
+dev = true
+peer = true

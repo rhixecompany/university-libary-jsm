@@ -31,54 +31,54 @@
 
 @utility book-title {
   /* Book Card */
-  @apply mt-2 line-clamp-1 text-base font-semibold text-white xs:text-xl;
+  @apply xs:text-xl mt-2 line-clamp-1 text-base font-semibold text-white;
 }
 
 @utility book-genre {
-  @apply mt-1 line-clamp-1 text-sm italic text-light-100 xs:text-base;
+  @apply text-light-100 xs:text-base mt-1 line-clamp-1 text-sm italic;
 }
 
 @utility book-loaned {
-  @apply flex flex-row items-center gap-1 max-xs:justify-center;
+  @apply max-xs:justify-center flex flex-row items-center gap-1;
 }
 
 @utility book-btn {
-  @apply bg-dark-600 mt-3 min-h-14 w-full font-bebas-neue text-base text-primary;
+  @apply bg-dark-600 font-bebas-neue text-primary mt-3 min-h-14 w-full text-base;
 }
 
 @utility borrowed-book {
   /* Borrowed Book */
-  @apply gradient-vertical p-5 rounded-2xl xs:w-min w-full relative;
+  @apply gradient-vertical xs:w-min relative w-full rounded-2xl p-5;
 }
 
 @utility borrowed-book_cover {
-  @apply py-4 lg:px-16 px-10 flex justify-center items-center w-full rounded-lg;
+  @apply flex w-full items-center justify-center rounded-lg px-10 py-4 lg:px-16;
 }
 
 @utility book-cover_extra_small {
   /* Book Cover */
-  @apply w-[28.95px] h-10;
+  @apply h-10 w-[28.95px];
 }
 
 @utility book-cover_small {
-  @apply w-[55px] h-[76px];
+  @apply h-[76px] w-[55px];
 }
 
 @utility book-cover_medium {
-  @apply w-[144px] h-[199px];
+  @apply h-[199px] w-[144px];
 }
 
 @utility book-cover_regular {
-  @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px];
+  @apply xs:w-[174px] xs:h-[239px] h-[169px] w-[114px];
 }
 
 @utility book-cover_wide {
-  @apply xs:w-[296px] w-[256px] xs:h-[404px] h-[354px];
+  @apply xs:w-[296px] xs:h-[404px] h-[354px] w-[256px];
 }
 
 @utility book-list {
   /* Book List */
-  @apply mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10;
+  @apply max-xs:justify-between xs:gap-10 mt-10 flex flex-wrap gap-5;
 }
 
 @utility book-overview {
@@ -91,23 +91,23 @@
 }
 
 @utility book-info {
-  @apply mt-7 flex flex-row flex-wrap gap-4 text-xl text-light-100;
+  @apply text-light-100 mt-7 flex flex-row flex-wrap gap-4 text-xl;
 }
 
 @utility book-copies {
-  @apply flex flex-row flex-wrap gap-4 mt-1;
+  @apply mt-1 flex flex-row flex-wrap gap-4;
 
   & p {
-    @apply text-xl text-light-100;
+    @apply text-light-100 text-xl;
   }
 
   & p span {
-    @apply ml-2 font-semibold text-primary;
+    @apply text-primary ml-2 font-semibold;
   }
 }
 
 @utility book-description {
-  @apply mt-2 text-justify text-xl text-light-100;
+  @apply text-light-100 mt-2 text-justify text-xl;
 }
 
 @utility book-overview_btn {
@@ -124,12 +124,12 @@
 }
 
 @utility progress {
-  @apply rounded-full bg-green-800 p-0.5 text-center font-bebas-neue text-[8px] font-bold leading-none text-light-100;
+  @apply font-bebas-neue text-light-100 rounded-full bg-green-800 p-0.5 text-center text-[8px] font-bold leading-none;
 }
 
 @utility search {
   /* Search */
-  @apply relative mt-10 flex min-h-14 w-full items-center rounded-xl bg-dark-300 px-4;
+  @apply bg-dark-300 relative mt-10 flex min-h-14 w-full items-center rounded-xl px-4;
 }
 
 @utility search-input {
@@ -184,11 +184,11 @@
 
 @utility auth-container {
   /* Auth */
-  @apply relative flex flex-col-reverse text-light-100 sm:flex-row;
+  @apply text-light-100 relative flex flex-col-reverse sm:flex-row;
 }
 
 @utility auth-form {
-  @apply my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top bg-dark-100 px-5 py-10;
+  @apply bg-pattern bg-dark-100 my-auto flex h-full min-h-screen flex-1 items-center bg-cover bg-top px-5 py-10;
 }
 
 @utility auth-box {
@@ -201,29 +201,29 @@
 
 @utility root-container {
   /* Root */
-  @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+  @apply bg-pattern bg-dark-100 xs:px-10 flex min-h-screen flex-1 flex-col bg-cover bg-top px-5 md:px-16;
 }
 
 @utility book-details {
   /* Book Details */
-  @apply lg:mt-36 mt-16 mb-20 flex flex-col gap-16 lg:flex-row;
+  @apply mb-20 mt-16 flex flex-col gap-16 lg:mt-36 lg:flex-row;
 
   & h3 {
-    @apply text-xl font-semibold text-primary;
+    @apply text-primary text-xl font-semibold;
   }
 }
 
 @utility library {
   /* Library */
-  @apply mx-auto flex max-w-xl w-full flex-col text-center;
+  @apply mx-auto flex w-full max-w-xl flex-col text-center;
 }
 
 @utility library-subtitle {
-  @apply text-lg font-semibold uppercase text-light-100;
+  @apply text-light-100 text-lg font-semibold uppercase;
 }
 
 @utility library-title {
-  @apply mt-2 text-3xl font-semibold text-white xs:text-5xl;
+  @apply xs:text-5xl mt-2 text-3xl font-semibold text-white;
 }
 
 @layer base {
@@ -252,18 +252,17 @@
 }
 
 @layer components {
-
   /* Book Ticket */
   #book-ticket {
-    @apply relative mt-10 hidden w-[544px] overflow-hidden bg-dark-300 py-8;
+    @apply bg-dark-300 relative mt-10 hidden w-[544px] overflow-hidden py-8;
   }
 
   #book-ticket #book-details div {
-    @apply space-y-1 rounded-md border border-light-100/10 p-3;
+    @apply border-light-100/10 space-y-1 rounded-md border p-3;
   }
 
   #book-ticket #book-details div p:first-child {
-    @apply text-xs text-light-700;
+    @apply text-light-700 text-xs;
   }
 
   #book-ticket #book-details div p:last-child {
@@ -280,15 +279,15 @@
 
   /* Not Found */
   #not-found {
-    @apply flex justify-center items-center flex-col text-center w-full;
+    @apply flex w-full flex-col items-center justify-center text-center;
   }
 
   #not-found h4 {
-    @apply text-white mt-6 font-semibold text-2xl;
+    @apply mt-6 text-2xl font-semibold text-white;
   }
 
   #not-found p {
-    @apply text-light-100 w-[360px] mt-1;
+    @apply text-light-100 mt-1 w-[360px];
   }
 
   /* Pagination */
@@ -297,7 +296,7 @@
   }
 
   #pagination p {
-    @apply text-sm inline-flex items-center font-semibold px-4 py-1.5 rounded-md text-center;
+    @apply inline-flex items-center rounded-md px-4 py-1.5 text-center text-sm font-semibold;
   }
 }
 
@@ -328,14 +327,14 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+    --sidebar: hsl(0 0% 98%);
+    --sidebar-foreground: hsl(240 5.3% 26.1%);
+    --sidebar-primary: hsl(240 5.9% 10%);
+    --sidebar-primary-foreground: hsl(0 0% 98%);
+    --sidebar-accent: hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground: hsl(240 5.9% 10%);
+    --sidebar-border: hsl(220 13% 91%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
 
   .dark {
@@ -363,14 +362,14 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+    --sidebar: hsl(240 5.9% 10%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(224.3 76.3% 48%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(240 3.7% 15.9%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
 }
 

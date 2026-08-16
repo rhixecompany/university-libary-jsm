@@ -1,6 +1,6 @@
 # The Story of University Library JSM
 
-*The library system that learned to scale*
+_The library system that learned to scale_
 
 ---
 
@@ -93,15 +93,14 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
 export function ShelfDnD({ books, onReorder }) {
   return (
-    <DndContext
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-    >
+    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext
-        items={books.map(b => b.id)}
+        items={books.map((b) => b.id)}
         strategy={verticalListSortingStrategy}
       >
-        {books.map(book => <SortableBook key={book.id} book={book} />)}
+        {books.map((book) => (
+          <SortableBook key={book.id} book={book} />
+        ))}
       </SortableContext>
     </DndContext>
   )
@@ -120,10 +119,7 @@ export async function GET() {
   const overdue = await db
     .select()
     .from(loans)
-    .where(and(
-      eq(loans.status, 'active'),
-      lt(loans.dueDate, new Date())
-    ))
+    .where(and(eq(loans.status, 'active'), lt(loans.dueDate, new Date())))
 
   for (const loan of overdue) {
     await sendOverdueEmail(loan)
@@ -141,12 +137,12 @@ Cron via Vercel Cron Jobs (daily 6 AM). Upstash QStash for reliability.
 ## Chapter 6: Drizzle Studio — The Librarian's Dashboard
 
 ```bash
-npm run db:studio
+bun run db:studio
 ```
 
 Opens at `localhost:4983`. Visual table editor. Filter, sort, edit. Librarians use it directly for bulk imports, data fixes.
 
-No admin panel needed. The ORM *is* the admin panel.
+No admin panel needed. The ORM _is_ the admin panel.
 
 ---
 
@@ -181,5 +177,5 @@ The librarian logs in, scans a barcode, the book is checked out. The student get
 
 ---
 
-*Written by the workspace chronicler, July 25, 2025.  
-Filed at `projects/university-libary-jsm/THE_STORY_OF_THIS_REPO.md`.*
+_Written by the workspace chronicler, July 25, 2025.  
+Filed at `projects/university-libary-jsm/THE_STORY_OF_THIS_REPO.md`._
