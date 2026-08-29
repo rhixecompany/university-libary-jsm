@@ -1,43 +1,17 @@
-# University Library JSM
+# university-libary-jsm — AGENTS.md
 
-## Architecture
+**Canonical reference:** See `../../AGENTS.md` for workspace-wide rules, conventions, and workflows.
 
-- **Type:** Next.js library management system
-- **Pattern:** App Router with Drizzle ORM, Neon serverless PostgreSQL, Redis caching
-- **Reference:** [Workflow Analysis](docs/Project_Architecture/Workflow_Analysis.md), [Exemplars](docs/Project_Architecture/exemplars.md)
+This file contains only university-libary-jsm-specific overrides and additions.
 
-Next.js 15 + Drizzle ORM + Neon (serverless PostgreSQL) + Redis (Upstash). Full-stack library management with book tracking, user management, and session caching.
+## Project-Specific Commands
 
-## Stack
+See `package.json` or `README.md` for build/test/lint commands specific to this project.
 
-- **Frontend:** Next.js 15, TypeScript (strict), App Router
-- **Database:** PostgreSQL via Drizzle ORM / Neon
-- **Cache:** Redis (Upstash) for session caching and rate limiting
-- **Auth:** NextAuth.js
-- **Deploy:** Vercel + Neon
+## Project-Specific Conventions
 
-## Commands
+Add any conventions that differ from the workspace root here.
 
-```bash
-bun run dev
-bun run build
-bun run lint
-bun run db:generate
-bun run db:push
-bun run db:studio
-```
+---
 
-## Conventions
-
-- Schema in Drizzle files under `src/db/`
-- Redis for session caching and API rate limiting
-- `.env.local` — never commit; Neon and Upstash credentials required
-- Drizzle migrations via `db:push` for schema updates
-- Node 18+ required
-
-## Notes
-
-- Serverless PostgreSQL via Neon (connection pooling)
-- Upstash Redis for serverless-compatible caching
-- Drizzle Studio for DB inspection
-- Vercel + Neon for production deployment
+*For all shared rules, toolchain, routing, and conventions, see `../../AGENTS.md`.*
